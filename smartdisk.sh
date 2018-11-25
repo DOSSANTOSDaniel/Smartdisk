@@ -27,7 +27,7 @@
 
 clear
 echo " "
-echo "    Début du programme Atouts_S.M.A.R.T"
+echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
 
@@ -192,7 +192,7 @@ echo -e "------------------------"
 smartctl -q errorsonly -H -l selftest /dev/$disk
 
 echo " "
-echo "FIN DU PROGRAMME Atouts_S.M.A.R.T"
+echo "FIN DU PROGRAMME S.M.A.R.T_disk"
 echo " "
 read -p "Tester un autre disque [o] ou arrêter le programme [n] ? : " -n 1 final
 echo " "
