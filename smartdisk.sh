@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# DESCRIPTION:
+# Description:
 #	Script permettant:
 #	1- D'afficher le numéro de série d'un disque dur.
 #	2- D'afficher le temps en fonctionnement d'un disque dur.
@@ -8,7 +8,7 @@
 #	d'un disque dur avant une éventuelle panne fatale possible.
 #	5- Effectue les testes S.M.A.R.T sur un disque dur.
 #----------------------------------------------------------------#
-# USAGE: ./smartdisk.sh
+# Usage: ./smartdisk.sh
 #	Exécuter le script en root!
 #	
 # Campatibilité:
@@ -21,7 +21,8 @@
 #	Mais certains constructeurs utilisent cette données en minutes
 #	par conséquent ce script ne sera pas compatible.
 #
-# daniel.dossantos@logicbox.fr
+# Auteur:
+#  	Daniel DOS SANTOS < danielitto91@gmail.com >
 #----------------------------------------------------------------#
 
 clear
