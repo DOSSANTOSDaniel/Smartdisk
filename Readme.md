@@ -22,20 +22,20 @@ Données utilisées
 -------------------
 
 <p>un jour = 24h</p>
-<p>une semaine = 168h
-un mois = 730.001h
-un ans = 8760h
+<p>une semaine = 168h</p>
+<p>un mois = 730.001h</p>
+<p>un ans = 8760h</p>
 
 Donnée du seuil
 ------------------
 
-D'après mes recherches le seuil max pour la durée de vie d'un disque dur est de 40 000 heures.
+<p>D'après mes recherches le seuil max pour la durée de vie d'un disque dur est de 40 000 heures.</p>
 
-D'après cette information la probabilité de panne par l'usure naturelle est:
+<p>D'après cette information la probabilité de panne par l'usure naturelle est:</p>
 
-Plus petit ou égal à 20000 ==> [ ~0% ]
-Entre 20001 et 24999 ==> [ ~20% ]
-Entre 25000 et 29999 ==> [ ~40% ]
-Entre 30000 et 34999 ==> [ ~60% ]
-Entre 35000 et 39999 ==> [ ~80% ]
-Plus grand ou égal à 40000 ==> [ ~100% ]
+<p>Plus petit ou égal à 20000 ==> [ ~0% ]</p>
+<p>Entre 20001 et 24999 ==> [ ~20% ]</p>
+<p>Entre 25000 et 29999 ==> [ ~40% ]</p>
+<p>Entre 30000 et 34999 ==> [ ~60% ]</p>
+<p>Entre 35000 et 39999 ==> [ ~80% ]</p>
+<p>Plus grand ou égal à 40000 ==> [ ~100% ]</p>
