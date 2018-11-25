@@ -149,7 +149,7 @@ else
 	mrest=`printf "%.2f\n" $(echo "$rest/730.001" | bc -l | sed 's/\./,/')`
 	arest=`printf "%.2f\n" $(echo "$rest/8760" | bc -l | sed 's/\./,/')`
 
-	echo "Temps restant avant une éventuelle panne : "
+	echo "Temps restant avant une éventuelle panne fatale: "
 	case 1 in
 	$(($rest<= 23))) echo -e " ==> ~ $rest heures\n";;
 	$(($rest>= 24 & $rest<= 167))) echo -e " ==> ~ $jrest jours\n";;
