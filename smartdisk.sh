@@ -22,7 +22,7 @@
 #	par conséquent ce script ne sera pas compatible.
 #
 # Auteur:
-#  	Daniel DOS SANTOS < danielitto91@gmail.com >
+#  	Daniel DOS SANTOS < daniel.massy91@gmail.com >
 #----------------------------------------------------------------#
 
 clear
