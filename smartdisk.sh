@@ -12,7 +12,6 @@
 #	Exécuter le script en root!
 #	
 # Campatibilité:
-#	
 #	Les disques durs supportant les attributs S.M.A.R.T sont:
 #	Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
 #
