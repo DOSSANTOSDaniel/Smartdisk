@@ -21,8 +21,8 @@ par conséquent ce script ne sera pas compatible.
 Données utilisées
 -------------------
 
-un jour = 24h
-une semaine = 168h
+<p>un jour = 24h</p>
+<p>une semaine = 168h
 un mois = 730.001h
 un ans = 8760h
 
