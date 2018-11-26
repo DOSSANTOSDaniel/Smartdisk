@@ -88,12 +88,8 @@ echo " "
 #numéro de série du disque
 echo "    Informations disque dur"
 echo "-------------------------------"
-smartctl -i /dev/sda | grep '\(Model Family:\|Device Model:\|Serial Number:\)'
+smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\)'
 
-echo " "
-echo "    Tableau des valeurs S.M.A.R.T"
-echo "--------------------------------------"
-smartctl -A /dev/$disk
 echo " "
 #heures de fonctionnement
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
