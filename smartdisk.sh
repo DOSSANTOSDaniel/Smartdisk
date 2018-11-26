@@ -75,7 +75,6 @@ testpassed=`smartctl -H /dev/sda | grep "SMART" | awk -F':' '{print $2}'`
 
 #Teste le résultat de PASSED
 echo " "
-
 if [ $testpassed == "PASSED" ]
 then
         echo -e "Pas d'erreur constaté sur les indicateurs S.M.A.R.T\n"
@@ -162,7 +161,16 @@ echo " "
 echo -e "    Estimation du temps de teste du disque"
 echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
-smartctl -c /dev/$disk | tail -n8
+smartctl -c /dev/sda | tail -n8 | head -n4
+echo " "
+
+read -p "Voulez-vous afficher le tableau des valeurs S.M.A.R.T oui[o] non[n] ? : " -n 1 choixts
+if [[ $choixts == "o" || $choixts == "O" ]]
+then
+	smartctl -c /dev/$disk | tail -n8 |head -n4
+else
+	sleep 1
+fi 
 
 echo " "
 #Début des testes approfondies du disque
