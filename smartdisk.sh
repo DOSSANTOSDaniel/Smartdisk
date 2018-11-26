@@ -71,26 +71,29 @@ smartctl -s on -o on -S on /dev/$disk > /dev/null
 
 #Si le résultat est PASSED, c’est qu’il n’y a pas d’erreur de constatée sur les indicateurs S.M.A.R.T,
 #Si par contre le résultat est FAILING, c’est qu’un ou plusieurs #indicateurs affichent des erreurs.
-smartctl -H /dev/$disk > /dev/null 2>&1
+testpassed=`smartctl -H /dev/sda | grep "SMART" | awk -F':' '{print $2}'`
 
 #Teste le résultat de PASSED
 echo " "
-if [ $? == 0 ]
+
+if [ $testpassed == "PASSED" ]
 then
         echo -e "Pas d'erreur constaté sur les indicateurs S.M.A.R.T\n"
 else
         echo -e "Disque dur endommagé veuillez sauvegarder vos données sur un autre support !\n"
+	exit 1
 fi
 
 echo " "
 #numéro de série du disque
 echo "    Informations disque dur"
 echo "-------------------------------"
+smartctl -i /dev/sda | grep '\(Model Family:\|Device Model:\|Serial Number:\)'
 
-smartctl -a /dev/$disk | grep "Model Family:"
-smartctl -a /dev/$disk | grep "Device Model:"
-smartctl -a /dev/$disk | grep "Serial Number:"
-
+echo " "
+echo "    Tableau des valeurs S.M.A.R.T"
+echo "--------------------------------------"
+smartctl -A /dev/$disk
 echo " "
 #heures de fonctionnement
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
