@@ -9,7 +9,7 @@ d'un disque dur avant une éventuelle panne fatale possible.
 # Usage: ./smartdisk.sh
 Exécuter le script en root!
 
-# Campatibilité:	
+# Compatibilité:	
 Les disques durs supportant les attributs S.M.A.R.T sont:
 Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
 
