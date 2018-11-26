@@ -159,10 +159,11 @@ echo " "
 echo -e "    Estimation du temps de teste du disque"
 echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
-smartctl -c /dev/sda | tail -n8 | head -n4
+smartctl -c /dev/$disk | tail -n11 | head -n6
 echo " "
 
 read -p "Voulez-vous afficher le tableau des valeurs S.M.A.R.T oui[o] non[n] ? : " -n 1 choixts
+echo " "
 if [[ $choixts == "o" || $choixts == "O" ]]
 then
 	smartctl -A /dev/$disk
