@@ -35,12 +35,10 @@ apt-get update > /dev/null 2>&1
 #Installation de smartmontools
 apt-get install -y smartmontools > /dev/null 2>&1
 
-echo " "
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
 do
 #Scan des disques du système
-echo " "
 smartctl --scan
 echo " "
 
@@ -167,7 +165,7 @@ echo " "
 read -p "Voulez-vous afficher le tableau des valeurs S.M.A.R.T oui[o] non[n] ? : " -n 1 choixts
 if [[ $choixts == "o" || $choixts == "O" ]]
 then
-	smartctl -c /dev/$disk | tail -n8 |head -n4
+	smartctl -A /dev/$disk
 else
 	sleep 1
 fi 
