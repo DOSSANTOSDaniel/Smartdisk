@@ -192,7 +192,7 @@ echo " "
 
 function testrl
 {
-	case $choix in
+	case $1 in
 	#"-t short” désigne un test rapide et moins approfondie
 	"R" | "r") smartctl -t short /dev/$disk | tail -n4;;
 	#"-t long” désigne un test long et plus approfondie
@@ -201,6 +201,8 @@ function testrl
 	*) echo "Erreur de saisie: " testrl;;
 	esac
 }
+
+testrl $choix
 
 echo " "
 read -p "Veuillez attendre la fin du teste puis validez"
