@@ -30,15 +30,20 @@ echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
 
-apt-get update > /dev/null 2>&1
-
-#Installation de smartmontools
-apt-get install -y smartmontools > /dev/null 2>&1
+apt-get update
+clear
+#Installation de smartmontools,bc
+apt-get install -y smartmontools
+apt-get install -y bc
+clear
 
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
 do
 #Scan des disques du système
+echo " "
+echo "    Les disques"
+echo "-------------------"
 smartctl --scan
 echo " "
 
