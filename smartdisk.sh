@@ -200,7 +200,9 @@ function testrl
 	"L" | "l")
 		echo " "
 		smartctl -t long /dev/$disk | tail -n4;;
-	"Q" | "q") echo "FIN DU PROGRAMME S.M.A.R.T_disk" exit 1;;
+	"Q" | "q") 
+		echo "FIN DU PROGRAMME S.M.A.R.T_disk" 
+		exit 1;;
 	*) echo " "
 		echo "Erreur de saisie ! "
 		sleep 2
