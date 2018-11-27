@@ -186,7 +186,7 @@ echo "--------------------"
 read -p " Votre choix ==> " -n 1 choix
 echo " "
 
-function testrl()
+function testrl
 {
 	case $choix in
 	#"-t short” désigne un test rapide et moins approfondie
