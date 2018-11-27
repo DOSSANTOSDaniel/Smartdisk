@@ -178,31 +178,33 @@ echo -e "    Estimation du temps de teste du disque"
 echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
 smartctl -c /dev/$disk | tail -n11 | head -n6
-
-echo " "
-#Début des testes approfondies du disque
-echo "Voulez vous faire un teste:"
-echo "--------------------"
-echo "[r] : Rapide"
-echo "[l] : plus complet"
-echo "[q] : quitter"
-echo "--------------------"
-read -p " Votre choix ==> " -n 1 choix
-echo " "
-
 function testrl
 {
-	case $1 in
+	echo " "
+	#Début des testes approfondies du disque
+	echo "Voulez vous faire un teste:"
+	echo "--------------------"
+	echo "[r] : Rapide"
+	echo "[l] : plus complet"
+	echo "[q] : quitter"
+	echo "--------------------"
+	read -p " Votre choix ==> " -n 1 choix
+	echo " "
+
+	case $choix in
 	#"-t short” désigne un test rapide et moins approfondie
 	"R" | "r") smartctl -t short /dev/$disk | tail -n4;;
 	#"-t long” désigne un test long et plus approfondie
 	"L" | "l") smartctl -t long /dev/$disk | tail -n4;;
 	"Q" | "q") echo "FIN DU PROGRAMME S.M.A.R.T_disk" exit 1;;
-	*) echo "Erreur de saisie: " testrl;;
+	*) echo " "
+		echo "Erreur de saisie ! "
+		sleep 2
+		testrl;;
 	esac
 }
 
-testrl $choix
+testrl
 
 echo " "
 read -p "Veuillez attendre la fin du teste puis validez"
