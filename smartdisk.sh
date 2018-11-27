@@ -32,6 +32,10 @@ echo " "
 
 apt-get update
 clear
+echo " "
+echo "    Début du programme S.M.A.R.T_disk"
+echo "------------------------------------------"
+echo " "
 #Installation de smartmontools,bc
 apt-get install -y smartmontools
 apt-get install -y bc
