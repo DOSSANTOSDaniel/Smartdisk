@@ -193,9 +193,13 @@ function testrl
 
 	case $choix in
 	#"-t short” désigne un test rapide et moins approfondie
-	"R" | "r") smartctl -t short /dev/$disk | tail -n4;;
+	"R" | "r")
+		echo " "
+		smartctl -t short /dev/$disk | tail -n4;;
 	#"-t long” désigne un test long et plus approfondie
-	"L" | "l") smartctl -t long /dev/$disk | tail -n4;;
+	"L" | "l")
+		echo " "
+		smartctl -t long /dev/$disk | tail -n4;;
 	"Q" | "q") echo "FIN DU PROGRAMME S.M.A.R.T_disk" exit 1;;
 	*) echo " "
 		echo "Erreur de saisie ! "
