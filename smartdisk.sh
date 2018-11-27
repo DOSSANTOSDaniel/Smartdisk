@@ -135,7 +135,7 @@ rest=$(echo "40000-$heures" | bc -l)
 
 if [[ $rest =~ ^-+ || $rest =~ ^0+ ]]
 then
-	echo "Durée de vie du disque dépassé !"
+	echo "Durée de vie du disque dépassé plus de 40 000 heures!"
 else	
 	#Non arrondie
 	#jrest=$(echo "$rest/24" | bc -l)
@@ -160,13 +160,6 @@ else
 	esac
 fi
 
-echo " "
-echo -e "    Estimation du temps de teste du disque"
-echo -e "----------------------------------------------\n"
-#Se faire une idée de la durée des testes
-smartctl -c /dev/$disk | tail -n11 | head -n6
-echo " "
-
 read -p "Voulez-vous afficher le tableau des valeurs S.M.A.R.T oui[o] non[n] ? : " -n 1 choixts
 echo " "
 if [[ $choixts == "o" || $choixts == "O" ]]
@@ -177,17 +170,34 @@ else
 fi 
 
 echo " "
-#Début des testes approfondies du disque
-read -p "Voulez vous faire un teste rapide[R], long[L] ou quitter[Q] ==> " choix
+echo -e "    Estimation du temps de teste du disque"
+echo -e "----------------------------------------------\n"
+#Se faire une idée de la durée des testes
+smartctl -c /dev/$disk | tail -n11 | head -n6
+
 echo " "
-case $choix in
-#"-t short” désigne un test rapide et moins approfondie
-"R" | "r") smartctl -t short /dev/$disk | tail -n4;;
-#"-t long” désigne un test long et plus approfondie
-"L" | "l") smartctl -t long /dev/$disk | tail -n4;;
-"Q" | "q") echo "FIN DU PROGRAMME S.M.A.R.T_disk" exit 1;;
-*) echo "Erreur de saisie: " continue;;
-esac
+#Début des testes approfondies du disque
+echo "Voulez vous faire un teste:"
+echo "--------------------"
+echo "[r] : Rapide"
+echo "[l] : plus complet"
+echo "[q] : quitter"
+echo "--------------------"
+read -p " Votre choix ==> " -n 1 choix
+echo " "
+
+function testrl()
+{
+	case $choix in
+	#"-t short” désigne un test rapide et moins approfondie
+	"R" | "r") smartctl -t short /dev/$disk | tail -n4;;
+	#"-t long” désigne un test long et plus approfondie
+	"L" | "l") smartctl -t long /dev/$disk | tail -n4;;
+	"Q" | "q") echo "FIN DU PROGRAMME S.M.A.R.T_disk" exit 1;;
+	*) echo "Erreur de saisie: " testrl;;
+	esac
+}
+
 echo " "
 read -p "Veuillez attendre la fin du teste puis validez"
 
