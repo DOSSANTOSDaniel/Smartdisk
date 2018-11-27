@@ -74,7 +74,7 @@ smartctl -s on -o on -S on /dev/$disk > /dev/null
 
 #Si le résultat est PASSED, c’est qu’il n’y a pas d’erreur de constatée sur les indicateurs S.M.A.R.T,
 #Si par contre le résultat est FAILING, c’est qu’un ou plusieurs #indicateurs affichent des erreurs.
-testpassed=`smartctl -H /dev/sda | grep "SMART" | awk -F':' '{print $2}'`
+testpassed=`smartctl -H /dev/$disk | grep "SMART" | awk -F':' '{print $2}'`
 
 #Teste le résultat de PASSED
 echo " "
@@ -103,10 +103,10 @@ heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
 #ans=$(echo "$heures/8760" | bc -l)
 
 #Arrondie
-jours=`printf "%.2f\n" $(echo "$heures/24" | bc -l | sed 's/\./,/')`
-semaines=`printf "%.2f\n" $(echo "$heures/168" | bc -l | sed 's/\./,/')`
-mois=`printf "%.2f\n" $(echo "$heures/730.001" | bc -l | sed 's/\./,/')`
-ans=`printf "%.2f\n" $(echo "$heures/8760" | bc -l | sed 's/\./,/')`
+jours=`printf "%.1f\n" $(echo "$heures/24" | bc -l | sed 's/\./,/')`
+semaines=`printf "%.1f\n" $(echo "$heures/168" | bc -l | sed 's/\./,/')`
+mois=`printf "%.1f\n" $(echo "$heures/730.001" | bc -l | sed 's/\./,/')`
+ans=`printf "%.1f\n" $(echo "$heures/8760" | bc -l | sed 's/\./,/')`
 
 #Temps écoulé
 case 1 in
@@ -144,10 +144,10 @@ else
 	#arest=$(echo "$rest/8760" | bc -l)
 	
 	#Arrondie
-	jrest=`printf "%.2f\n" $(echo "$rest/24" | bc -l | sed 's/\./,/')`
-	srest=`printf "%.2f\n" $(echo "$rest/168" | bc -l | sed 's/\./,/')`
-	mrest=`printf "%.2f\n" $(echo "$rest/730.001" | bc -l | sed 's/\./,/')`
-	arest=`printf "%.2f\n" $(echo "$rest/8760" | bc -l | sed 's/\./,/')`
+	jrest=`printf "%.1f\n" $(echo "$rest/24" | bc -l | sed 's/\./,/')`
+	srest=`printf "%.1f\n" $(echo "$rest/168" | bc -l | sed 's/\./,/')`
+	mrest=`printf "%.1f\n" $(echo "$rest/730.001" | bc -l | sed 's/\./,/')`
+	arest=`printf "%.1f\n" $(echo "$rest/8760" | bc -l | sed 's/\./,/')`
 
 	echo "Temps restant avant une éventuelle panne fatale: "
 	case 1 in
@@ -178,14 +178,15 @@ fi
 
 echo " "
 #Début des testes approfondies du disque
-read -p "Voulez vous faire un teste rapide [R] ou long [L] ==> " choix
+read -p "Voulez vous faire un teste rapide[R], long[L] ou quitter[Q] ==> " choix
 echo " "
 case $choix in
 #"-t short” désigne un test rapide et moins approfondie
 "R" | "r") smartctl -t short /dev/$disk | tail -n4;;
 #"-t long” désigne un test long et plus approfondie
 "L" | "l") smartctl -t long /dev/$disk | tail -n4;;
-*) echo "Erreur de saisie" exit 1;;
+"Q" | "q") echo "FIN DU PROGRAMME S.M.A.R.T_disk" exit 1;;
+*) echo "Erreur de saisie: " continue;;
 esac
 echo " "
 read -p "Veuillez attendre la fin du teste puis validez"
@@ -204,7 +205,7 @@ smartctl -q errorsonly -H -l selftest /dev/$disk
 echo " "
 echo "FIN DU PROGRAMME S.M.A.R.T_disk"
 echo " "
-read -p "Tester un autre disque [o] ou arrêter le programme [n] ? : " -n 1 final
+read -p "Tester un autre disque[o] ou arrêter le programme[n] ? : " -n 1 final
 echo " "
 if [[ $final == "o" || $final == "O" ]]
 then
