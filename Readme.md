@@ -39,3 +39,8 @@ Donnée du seuil
 <p>Entre 30000 et 34999 ==> [ ~60% ]</p>
 <p>Entre 35000 et 39999 ==> [ ~80% ]</p>
 <p>Plus grand ou égal à 40000 ==> [ ~100% ]</p>
+
+# à faire
+* Compatibilité avec les données en minutes.
+* Proposer un teste des erreurs de secteur.
+* A l'aide du tableau SMART afficher les composant du disque en panne.
