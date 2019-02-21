@@ -34,8 +34,18 @@ function installation
 	then
 		echo -e "\n Installation de $1 \n"
 		apt-get install -y $1
+		if [[ $? == 0 ]]
+		then
+			echo -e "\n Installation réussi \n"
+		elif [[ $? == 1 ]]
+		then
+			echo -e "\n Installation impossible \n"
+			exit 1
+		else
+			echo -e "\n Erreur \n"
+		fi
 	else
-		echo -e "erreur"
+		echo -e "Erreur"
 		exit 1
 	fi
 }
@@ -46,7 +56,7 @@ echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
 
-apt-get update
+apt-get update > /dev/null
 clear
 echo " "
 echo "    Début du programme S.M.A.R.T_disk"
@@ -54,9 +64,9 @@ echo "------------------------------------------"
 echo " "
 
 #Installation de smartmontools,bc
-dpkg --status smartmontools
+dpkg --status smartmontools > /dev/null
 installation smartmontools
-dpkg --status bc
+dpkg --status bc > /dev/null
 installation bc
 
 suivant="o"
