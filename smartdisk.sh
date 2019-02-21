@@ -24,6 +24,22 @@
 #  	Daniel DOS SANTOS < daniel.massy91@gmail.com >
 #----------------------------------------------------------------#
 
+### Les fonctions
+function installation
+{
+	if [[ $? == 0 ]]
+	then
+		echo -e "\n Le paquet smartmontools est déjà installé \n"
+	elif [[ $? == 1 ]]
+	then
+		echo -e "\n Installation de $1 \n"
+		apt-get install -y $1
+	else
+		echo -e "erreur"
+		exit 1
+	fi
+}
+
 clear
 echo " "
 echo "    Début du programme S.M.A.R.T_disk"
@@ -36,10 +52,12 @@ echo " "
 echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
+
 #Installation de smartmontools,bc
-apt-get install -y smartmontools
-apt-get install -y bc
-clear
+dpkg --status smartmontools
+installation smartmontools
+dpkg --status bc
+installation bc
 
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
