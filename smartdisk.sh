@@ -29,7 +29,7 @@ function installation
 {
 	if [[ $? == 0 ]]
 	then
-		echo -e "\n Le paquet smartmontools est déjà installé \n"
+		echo -e "\n Le paquet $1 est déjà installé \n"
 	elif [[ $? == 1 ]]
 	then
 		echo -e "\n Installation de $1 \n"
