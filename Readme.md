@@ -1,3 +1,4 @@
+# On peut aussi utiliser le programme Gsmartcontrol
 # Description:
 Script permettant:
 * 1- D'afficher le numéro de série d'un disque dur.
