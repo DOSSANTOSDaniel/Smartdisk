@@ -30,7 +30,7 @@ function installation
 	if [[ $inx == "install" ]]
 	then
 		echo ""
-	elif [[ $inx == "deinstall" ]]
+	elif [[ $inx == "deinstall" || $inx == "" ]]
 	then
 		echo -e "\n Installation de $1 \n"
 		apt-get install -y $1
