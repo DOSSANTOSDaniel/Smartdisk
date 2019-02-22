@@ -29,7 +29,7 @@ function installation
 {
 	if [[ $? == 0 ]]
 	then
-		echo -e "\n Le paquet $1 est déjà installé \n"
+		echo ""
 	elif [[ $? == 1 ]]
 	then
 		echo -e "\n Installation de $1 \n"
@@ -106,11 +106,11 @@ smartctl -s on -o on -S on /dev/$disk > /dev/null
 
 #Si le résultat est PASSED, c’est qu’il n’y a pas d’erreur de constatée sur les indicateurs S.M.A.R.T,
 #Si par contre le résultat est FAILING, c’est qu’un ou plusieurs #indicateurs affichent des erreurs.
-testpassed=`smartctl -H /dev/$disk | grep "SMART" | awk -F':' '{print $2}'`
+testpassed=$(smartctl -H /dev/sda | grep "SMART" | sed -n "2p" | awk -F':' '{print $2}')
 
 #Teste le résultat de PASSED
 echo " "
-if [ $testpassed == "PASSED" ]
+if [[ $testpassed == " PASSED" ]]
 then
         echo -e "Pas d'erreur constaté sur les indicateurs S.M.A.R.T\n"
 else
