@@ -56,6 +56,7 @@ echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
 
+echo -e "\n En cours d'actualisation! \n"
 apt-get update > /dev/null
 
 #Installation de smartmontools,bc
