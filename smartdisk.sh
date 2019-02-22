@@ -57,11 +57,6 @@ echo "------------------------------------------"
 echo " "
 
 apt-get update > /dev/null
-clear
-echo " "
-echo "    Début du programme S.M.A.R.T_disk"
-echo "------------------------------------------"
-echo " "
 
 #Installation de smartmontools,bc
 inx=$(dpkg -s smartmontools | grep Status | awk '{print $2}')
