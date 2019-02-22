@@ -27,10 +27,10 @@
 ### Les fonctions
 function installation
 {
-	if [[ $? == 0 ]]
+	if [[ $inx == "install" ]]
 	then
 		echo ""
-	elif [[ $? == 1 ]]
+	elif [[ $inx == "deinstall" ]]
 	then
 		echo -e "\n Installation de $1 \n"
 		apt-get install -y $1
@@ -45,7 +45,7 @@ function installation
 			echo -e "\n Erreur \n"
 		fi
 	else
-		echo -e "Erreur"
+		echo "Erreur"
 		exit 1
 	fi
 }
@@ -64,9 +64,9 @@ echo "------------------------------------------"
 echo " "
 
 #Installation de smartmontools,bc
-dpkg --status smartmontools > /dev/null
+inx=$(dpkg -s smartmontools | grep Status | awk '{print $2}')
 installation smartmontools
-dpkg --status bc > /dev/null
+inx=$(dpkg -s bc | grep Status | awk '{print $2}')
 installation bc
 
 suivant="o"
