@@ -110,7 +110,8 @@ if [[ $testpassed == " PASSED" ]]
 then
         echo -e "Pas d'erreur constaté sur les indicateurs S.M.A.R.T\n"
 else
-        echo -e "Disque dur endommagé veuillez sauvegarder vos données sur un autre support !\n"
+        echo "Disque dur endommagé ou non compatible avec les données S.M.A.R.T"
+	echo -e "veuillez sauvegarder vos données sur un autre support !\n"
 	exit 1
 fi
 
