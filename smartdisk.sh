@@ -64,7 +64,7 @@ inx=$(dpkg -s smartmontools | grep Status | awk '{print $2}')
 installation smartmontools
 inx=$(dpkg -s bc | grep Status | awk '{print $2}')
 installation bc
-
+clear
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
 do
@@ -225,8 +225,8 @@ function testrl
 	"L" | "l")
 		echo " "
 		smartctl -t long /dev/$disk | tail -n4;;
-	"Q" | "q") 
-		echo "FIN DU PROGRAMME S.M.A.R.T_disk" 
+	"Q" | "q")
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
 		exit 1;;
 	*) echo " "
 		echo "Erreur de saisie ! "
