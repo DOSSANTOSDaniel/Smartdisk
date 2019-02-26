@@ -64,6 +64,7 @@ inx=$(dpkg -s smartmontools | grep Status | awk '{print $2}')
 installation smartmontools
 inx=$(dpkg -s bc | grep Status | awk '{print $2}')
 installation bc
+sleep 4
 clear
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
