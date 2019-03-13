@@ -43,5 +43,4 @@ Donnée du seuil
 
 # à faire
 * Compatibilité avec les données en minutes.
-* Proposer un teste des erreurs de secteur.
 * A l'aide du tableau SMART afficher les composant du disque en panne.
