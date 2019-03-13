@@ -6,7 +6,8 @@
 #	2- D'afficher le temps en fonctionnement d'un disque dur.
 #	3- D'afficher une date préventive pour le changement 
 #	d'un disque dur avant une éventuelle panne fatale possible.
-#	5- Effectue les testes S.M.A.R.T sur un disque dur.
+#	4- Effectue les testes S.M.A.R.T sur un disque dur.
+#	5- Effectue des tests de secteurs avec Badblocks.
 #----------------------------------------------------------------#
 # Usage: ./smartdisk.sh
 #	Exécuter le script en root!
@@ -24,7 +25,8 @@
 #  	Daniel DOS SANTOS < daniel.massy91@gmail.com >
 #----------------------------------------------------------------#
 
-### Les fonctions
+### Les fonctions ###
+
 function installation
 {
 	if [[ $inx == "install" ]]
@@ -49,6 +51,49 @@ function installation
 		exit 1
 	fi
 }
+
+function testrl
+{
+	echo " "
+	#Début des testes approfondies du disque
+	echo '     Menu tests  '
+	echo '--------------------'
+	echo '[r] : SMART Rapide'
+	echo '[l] : SMART plus complet'
+	echo '[b] : Badblocks (lecture/écriture)'
+	echo '[q] : quitter'
+	echo '--------------------'
+	read -p " Votre choix ==> " -n 1 choix
+	echo " "
+
+	case $choix in
+	#"-t short” désigne un test rapide et moins approfondie
+	"R" | "r")
+		echo " "
+		smartctl -t short /dev/$disk | tail -n4;;
+	#"-t long” désigne un test long et plus approfondie
+	"B" | "b")
+		echo " "
+	#"-w" test en écriture
+	#"-s" barre de progression
+	#"-v" verbosité	
+		badblocks -wsv /dev/$disk
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
+		exit 2;;
+	"L" | "l")
+		echo " "
+		smartctl -t long /dev/$disk | tail -n4;;
+	"Q" | "q")
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
+		exit 1;;
+	*) echo " "
+		echo "Erreur de saisie ! "
+		sleep 2
+		testrl;;
+	esac
+}
+
+### Début du programme ###
 
 clear
 echo " "
@@ -165,7 +210,7 @@ rest=$(echo "40000-$heures" | bc -l)
 
 if [[ $rest =~ ^-+ || $rest =~ ^0+ ]]
 then
-	echo "Durée de vie du disque dépassé plus de 40 000 heures!"
+	echo "Durée de vie du disque dépassé, plus de 40 000 heures de fonctionnement!"
 else	
 	#Non arrondie
 	#jrest=$(echo "$rest/24" | bc -l)
@@ -200,41 +245,10 @@ else
 fi 
 
 echo " "
-echo -e "    Estimation du temps de teste du disque"
+echo -e "    Temps de test SMART estimé"
 echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
 smartctl -c /dev/$disk | tail -n11 | head -n6
-function testrl
-{
-	echo " "
-	#Début des testes approfondies du disque
-	echo "Voulez vous faire un teste:"
-	echo "--------------------"
-	echo "[r] : Rapide"
-	echo "[l] : plus complet"
-	echo "[q] : quitter"
-	echo "--------------------"
-	read -p " Votre choix ==> " -n 1 choix
-	echo " "
-
-	case $choix in
-	#"-t short” désigne un test rapide et moins approfondie
-	"R" | "r")
-		echo " "
-		smartctl -t short /dev/$disk | tail -n4;;
-	#"-t long” désigne un test long et plus approfondie
-	"L" | "l")
-		echo " "
-		smartctl -t long /dev/$disk | tail -n4;;
-	"Q" | "q")
-		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
-		exit 1;;
-	*) echo " "
-		echo "Erreur de saisie ! "
-		sleep 2
-		testrl;;
-	esac
-}
 
 testrl
 
