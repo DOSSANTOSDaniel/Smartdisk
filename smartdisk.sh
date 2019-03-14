@@ -60,7 +60,7 @@ function testrl
 	echo '--------------------'
 	echo '[r] : SMART Rapide'
 	echo '[l] : SMART plus complet'
-	echo '[b] : Badblocks (lecture/écriture)'
+	echo '[b] : Badblocks (écriture)'
 	echo '[q] : quitter'
 	echo '--------------------'
 	read -p " Votre choix ==> " -n 1 choix
