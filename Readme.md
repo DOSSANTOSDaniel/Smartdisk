@@ -42,5 +42,8 @@ Donnée du seuil
 <p>Plus grand ou égal à 40000 ==> [ ~100% ]</p>
 
 # à faire
+* Afficher une estimation des testes Badblocks.
+* Permettre la réparation de secteurs morts avec badblocks.
 * Compatibilité avec les données en minutes.
+* Récupérer les estimations SMART autrement.
 * A l'aide du tableau SMART afficher les composant du disque en panne.
