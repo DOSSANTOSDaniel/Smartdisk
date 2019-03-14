@@ -46,4 +46,5 @@ Donnée du seuil
 * Permettre la réparation de secteurs morts avec badblocks.
 * Compatibilité avec les données en minutes.
 * Récupérer les estimations SMART autrement.
+* Si la variable heures est vide alors la donnée est en minutes donc quitter.
 * A l'aide du tableau SMART afficher les composant du disque en panne.
