@@ -104,11 +104,13 @@ echo " "
 echo -e "\n En cours d'actualisation! \n"
 apt-get update > /dev/null
 
-#Installation de smartmontools,bc
+#Installation de smartmontools,bc et badblocks
 inx=$(dpkg -s smartmontools | grep Status | awk '{print $2}')
 installation smartmontools
 inx=$(dpkg -s bc | grep Status | awk '{print $2}')
 installation bc
+inx=$(dpkg -s e2fsprogs | grep Status | awk '{print $2}')
+installation e2fsprogs
 sleep 4
 clear
 suivant="o"
