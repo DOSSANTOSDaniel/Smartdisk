@@ -6,6 +6,7 @@ Script permettant:
 - D'afficher une date préventive pour le changement d'un disque dur avant une éventuelle panne fatale possible.
 - Effectue les testes S.M.A.R.T sur un disque dur.
 - Effectue des tests de secteurs avec Badblocks.
+- Tenter de réparer les secteur morts sur un disque.
 
 # Usage: ./smartdisk.sh
 Exécuter le script en root!
@@ -43,8 +44,8 @@ Donnée du seuil
 
 # à faire
 * Afficher une estimation des testes Badblocks.
-* Permettre la réparation de secteurs morts avec badblocks.
 * Compatibilité avec les données en minutes.
 * Récupérer les estimations SMART autrement.
 * Si la variable heures est vide alors la donnée est en minutes donc quitter.
 * A l'aide du tableau SMART afficher les composant du disque en panne.
+* Création d'un fichier de log.
