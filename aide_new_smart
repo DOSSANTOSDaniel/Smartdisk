@@ -1,0 +1,14 @@
+Test en destruction écriture
+------------------------------
+badblocks -wsv /dev/sdX > badblocks.txt
+
+Test en lécture
+----------------
+badblocks -nsv /dev/sdX > badblocks.txt
+
+Réparation
+-----------
+e2fsck -cfpv /dev/sdx  < badblocks.txt
+
+ou avec la commande fsck:
+sudo fsck -C -t ext4 -l badblocks.txt /dev/sdxx
