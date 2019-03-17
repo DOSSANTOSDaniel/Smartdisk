@@ -60,7 +60,8 @@ function testrl
 	echo '--------------------'
 	echo '[r] : SMART Rapide'
 	echo '[l] : SMART plus complet'
-	echo '[b] : Badblocks (écriture)'
+	echo '[r] : Badblocks (lécture)'
+	echo '[w] : Badblocks (écriture)'
 	echo '[q] : quitter'
 	echo '--------------------'
 	read -p " Votre choix ==> " -n 1 choix
@@ -72,12 +73,22 @@ function testrl
 		echo " "
 		smartctl -t short /dev/$disk | tail -n4;;
 	#"-t long” désigne un test long et plus approfondie
-	"B" | "b")
+	"W" | "w")
 		echo " "
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité	
-		badblocks -wsv /dev/$disk
+		badblocks -wsv /dev/$disk > /tmp/badblocks_erreurs.txt
+		reparation
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
+		exit 2;;
+	"R" | "r")
+		echo " "
+	#"-w" test en écriture
+	#"-s" barre de progression
+	#"-v" verbosité	
+		badblocks -nsv /dev/$disk > /tmp/badblocks_erreurs.txt
+		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
 		exit 2;;
 	"L" | "l")
@@ -91,6 +102,34 @@ function testrl
 		sleep 2
 		testrl;;
 	esac
+}
+
+function reparation
+{
+chemin='/tmp/badblocks_erreurs.txt'
+if [ -e $chemin ]; then
+# le fichier existe
+	if [ -s $chemin ]; then
+                echo "Des erreurs ont été trouvés!" # fichier non vide
+                read -p "Voulez vous réparer le disque [o]oui [n]non ?" repa
+
+                case $repa in
+        "o" | "O")
+                echo " "
+                e2fsck -cfpv /dev/$disk  < $chemin;;
+	"n" | "N")
+                echo "Disque non réparé!";;
+                *)
+                echo " "
+                echo "Erreur de saisie ! ";;
+                esac
+        else
+                echo "Pas d'erreur trouvé!" #fichier vide
+	fi
+else
+	echo "Erreur fichier non trouvé!"
+fi
+rm -rf $chemin
 }
 
 ### Début du programme ###
