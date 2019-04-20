@@ -29,26 +29,39 @@
 
 function installation
 {
+	inx=$(dpkg -s "$1" | grep Status | awk '{print $2}')
+	clear
 	if [[ $inx == "install" ]]
 	then
-		echo ""
-	elif [[ $inx == "deinstall" || $inx == "" ]]
+		echo -e "\n $1 est déjà installé \n"
+	elif [[ $inx == "deinstall" ]]
 	then
-		echo -e "\n Installation de $1 \n"
+		echo -e "\n Installation de $1 en cours \n"
 		apt-get install -y $1
+
 		if [[ $? == 0 ]]
 		then
 			echo -e "\n Installation réussi \n"
 		elif [[ $? == 1 ]]
 		then
-			echo -e "\n Installation impossible \n"
+			echo -e "\n Installation de $1 impossible \n"
 			exit 1
 		else
 			echo -e "\n Erreur \n"
+			exit 1
 		fi
 	else
-		echo "Erreur"
-		exit 1
+		pri='type -a'
+		$pri $1
+		if [[ $? == "0" && $1 != "" ]]
+		then	
+			echo -e "\n La commande $1 est installée"
+			echo -e "$1 n'est pas gérée par DPKG \n"
+		else	
+			echo -e "\n Erreur \n"
+			echo -e "Installation impossible \n"
+			exit 1
+		fi
 	fi
 }
 
@@ -144,13 +157,9 @@ echo -e "\n En cours d'actualisation! \n"
 apt-get update > /dev/null
 
 #Installation de smartmontools,bc et badblocks
-inx=$(dpkg -s smartmontools | grep Status | awk '{print $2}')
 installation smartmontools
-inx=$(dpkg -s bc | grep Status | awk '{print $2}')
 installation bc
-inx=$(dpkg -s e2fsprogs | grep Status | awk '{print $2}')
 installation e2fsprogs
-sleep 4
 clear
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
