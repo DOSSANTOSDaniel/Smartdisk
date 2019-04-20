@@ -4,14 +4,14 @@
 #	Script permettant:
 #	1- D'afficher le numéro de série d'un disque dur.
 #	2- D'afficher le temps en fonctionnement d'un disque dur.
-#	3- D'afficher une date préventive pour le changement 
+#	3- D'afficher une date préventive pour le changement
 #	d'un disque dur avant une éventuelle panne fatale possible.
 #	4- Effectue les testes S.M.A.R.T sur un disque dur.
 #	5- Effectue des tests de secteurs avec Badblocks.
 #----------------------------------------------------------------#
 # Usage: ./smartdisk.sh
 #	Exécuter le script en root!
-#	
+#
 # Campatibilité:
 #	Les disques durs supportant les attributs S.M.A.R.T sont:
 #	Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
@@ -54,10 +54,10 @@ function installation
 		pri='type -a'
 		$pri $1
 		if [[ $? == "0" && $1 != "" ]]
-		then	
+		then
 			echo -e "\n La commande $1 est installée"
 			echo -e "$1 n'est pas gérée par DPKG \n"
-		else	
+		else
 			echo -e "\n Erreur \n"
 			echo -e "Installation impossible \n"
 			exit 1
@@ -69,10 +69,10 @@ function testrl
 {
 	echo " "
 	#Début des testes approfondies du disque
-	echo '     Menu tests  '
+	echo '     Menu test  '
 	echo '--------------------'
-	echo '[r] : SMART Rapide'
-	echo '[l] : SMART plus complet'
+	echo '[s] : SMART Rapide'
+	echo '[c] : SMART plus complet'
 	echo '[r] : Badblocks (lécture)'
 	echo '[w] : Badblocks (écriture)'
 	echo '[q] : quitter'
@@ -82,7 +82,7 @@ function testrl
 
 	case $choix in
 	#"-t short” désigne un test rapide et moins approfondie
-	"R" | "r")
+	"S" | "s")
 		echo " "
 		smartctl -t short /dev/$disk | tail -n4;;
 	#"-t long” désigne un test long et plus approfondie
@@ -90,25 +90,25 @@ function testrl
 		echo " "
 	#"-w" test en écriture
 	#"-s" barre de progression
-	#"-v" verbosité	
+	#"-v" verbosité
 		badblocks -wsv /dev/$disk > /tmp/badblocks_erreurs.txt
 		reparation
-		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
 	"R" | "r")
 		echo " "
 	#"-w" test en écriture
 	#"-s" barre de progression
-	#"-v" verbosité	
+	#"-v" verbosité
 		badblocks -nsv /dev/$disk > /tmp/badblocks_erreurs.txt
 		reparation
-		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
-	"L" | "l")
+	"C" | "c")
 		echo " "
 		smartctl -t long /dev/$disk | tail -n4;;
 	"Q" | "q")
-		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n" 
+		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 1;;
 	*) echo " "
 		echo "Erreur de saisie ! "
@@ -188,8 +188,8 @@ else
 		continue
 	else
 		exit 1
-	fi 
-fi	
+	fi
+fi
 
 #-s Active le support SMART (ou pas s'il est déjà activé...)
 #-o Active la collecte des données hors connexion.
@@ -222,7 +222,7 @@ echo " "
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
 
 #Non arrondie
-#jours=$(echo "$heures/24" | bc -l)   
+#jours=$(echo "$heures/24" | bc -l)
 #semaines=$(echo "$heures/168" | bc -l)
 #mois=$(echo "$heures/730.001" | bc -l)
 #ans=$(echo "$heures/8760" | bc -l)
@@ -261,13 +261,13 @@ rest=$(echo "40000-$heures" | bc -l)
 if [[ $rest =~ ^-+ || $rest =~ ^0+ ]]
 then
 	echo "Durée de vie du disque dépassé, plus de 40 000 heures de fonctionnement!"
-else	
+else
 	#Non arrondie
 	#jrest=$(echo "$rest/24" | bc -l)
 	#srest=$(echo "$rest/168" | bc -l)
 	#mrest=$(echo "$rest/730.001" | bc -l)
 	#arest=$(echo "$rest/8760" | bc -l)
-	
+
 	#Arrondie
 	jrest=`printf "%.1f\n" $(echo "$rest/24" | bc -l | sed 's/\./,/')`
 	srest=`printf "%.1f\n" $(echo "$rest/168" | bc -l | sed 's/\./,/')`
@@ -292,7 +292,7 @@ then
 	smartctl -A /dev/$disk
 else
 	sleep 1
-fi 
+fi
 
 echo " "
 echo -e "    Temps de test SMART estimé"
@@ -326,5 +326,5 @@ then
 	continue
 else
 	exit 1
-fi 
+fi
 done
