@@ -168,7 +168,7 @@ do
 echo " "
 echo "    Les disques"
 echo "-------------------"
-smartctl --scan
+lshw -short -C disk | cut -c19-
 echo " "
 
 #Choix du disque à tester
