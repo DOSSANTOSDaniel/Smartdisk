@@ -31,7 +31,7 @@ Données utilisées
 Donnée du seuil
 ------------------
 
-<p>D'après mes recherches le seuil max pour la durée de vie d'un disque dur est de 40 000 heures.</p>
+<p>D'après mes recherches le seuil max pour la durée de vie d'un disque dur en production est de ~40 000 heures (4,6 ans).</p>
 
 <p>D'après cette information la probabilité de panne par l'usure naturelle est:</p>
 
