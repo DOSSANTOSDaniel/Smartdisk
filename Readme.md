@@ -11,7 +11,7 @@ Script permettant:
 # Usage: ./smartdisk.sh
 Exécuter le script en root!
 
-# Compatibilité:	
+# Compatibilité:
 Les disques durs supportant les attributs S.M.A.R.T sont:
 Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
 
@@ -45,7 +45,5 @@ Donnée du seuil
 # à faire
 * Afficher une estimation des testes Badblocks.
 * Compatibilité avec les données en minutes.
-* Récupérer les estimations SMART autrement.
 * Si la variable heures est vide alors la donnée est en minutes donc quitter.
 * A l'aide du tableau SMART afficher les composant du disque en panne.
-* Création d'un fichier de log.
