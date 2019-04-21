@@ -25,6 +25,14 @@
 #  	Daniel DOS SANTOS < daniel.massy91@gmail.com >
 #----------------------------------------------------------------#
 
+#Variable date du jour
+#dat=$(date "+%m/%d/%y_%H:%M")
+
+#Création des logs
+#mkdir -p smartlog
+#exec > >(tee -a smartlog/log_$dat)
+#exec 2>&1
+
 ### Les fonctions ###
 
 function installation
