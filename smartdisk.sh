@@ -231,7 +231,17 @@ smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|R
 echo " "
 #heures de fonctionnement
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
-
+if [[ $heures =~ ^[0-9]+$ ]]
+then
+	echo -e "\n Données en heures correcte! \n"
+elif [ -z $heures ]
+	echo -e "Pas d'information sur la données Power-On Hours (POH)"
+	echo -e "Impossible de continuer!"
+	exit 1
+else
+	echo -e "Impossible de continuer!"
+	exit 1
+fi
 #Non arrondie
 #jours=$(echo "$heures/24" | bc -l)
 #semaines=$(echo "$heures/168" | bc -l)
