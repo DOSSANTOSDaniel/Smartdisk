@@ -224,12 +224,10 @@ else
 	exit 1
 fi
 
-echo " "
 #numéro de série du disque
-echo "    Informations disque dur"
-echo "-------------------------------"
+echo -e "\n    Informations disque dur"
+echo -e "-------------------------------\n"
 smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|Rotation Rate:\)'
-
 echo " "
 #heures de fonctionnement
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
@@ -248,16 +246,16 @@ ans=`printf "%.1f\n" $(echo "$heures/8760" | bc -l | sed 's/\./,/')`
 
 #Temps écoulé
 case 1 in
-$(($heures<= 23))) echo -e "Fonctionnement depuis $heures heures\n";;
-$(($heures>= 24 & $heures<= 167))) echo -e "Fonctionnement depuis $jours jours\n";;
-$(($heures>= 168 & $heures<= 729))) echo -e "Fonctionnement depuis $semaines semaines\n";;
-$(($heures>= 730 & $heures<= 8759))) echo -e "Fonctionnement depuis $mois mois\n";;
-$(($heures>= 6087))) echo -e "Fonctionnement depuis $ans ans\n";;
+$(($heures<= 23))) echo -e "Fonctionnement depuis : $heures heures\n";;
+$(($heures>= 24 & $heures<= 167))) echo -e "Fonctionnement depuis : $jours jours\n";;
+$(($heures>= 168 & $heures<= 729))) echo -e "Fonctionnement depuis : $semaines semaines\n";;
+$(($heures>= 730 & $heures<= 8759))) echo -e "Fonctionnement depuis : $mois mois\n";;
+$(($heures>= 6087))) echo -e "Fonctionnement depuis : $ans ans\n";;
 *) exit 1;;
 esac
 
 #Seuil d'alarme
-echo "Probabilité de panne par l'usure naturelle : "
+echo -e "Probabilité de panne par l'usure naturelle : \n"
 case 1 in
 $(($heures<= 20000))) echo -e " ==> [ ~0% ]\n";;
 $(($heures>= 20001 & $heures<= 24999))) echo -e " ==> [ ~20% ]\n";;
@@ -287,7 +285,7 @@ else
 	mrest=`printf "%.1f\n" $(echo "$rest/730.001" | bc -l | sed 's/\./,/')`
 	arest=`printf "%.1f\n" $(echo "$rest/8760" | bc -l | sed 's/\./,/')`
 
-	echo "Temps restant avant une éventuelle panne fatale: "
+	echo -e "Temps restant avant une éventuelle panne fatale : \n"
 	case 1 in
 	$(($rest<= 23))) echo -e " ==> ~ $rest heures\n";;
 	$(($rest>= 24 & $rest<= 167))) echo -e " ==> ~ $jrest jours\n";;
