@@ -168,6 +168,7 @@ apt-get update > /dev/null
 installation smartmontools
 installation bc
 installation e2fsprogs
+installation lshw
 clear
 suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
