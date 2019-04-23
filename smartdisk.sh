@@ -99,7 +99,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -wsv /dev/$disk > /tmp/badblocks_erreurs.txt
+		badblocks -wsv /dev/$disk > /tmp/badblocks_erreurs_$id_disk.txt
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -108,7 +108,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -nsv /dev/$disk > /tmp/badblocks_erreurs.txt
+		badblocks -nsv /dev/$disk > /tmp/badblocks_erreurs_$id_disk.txt
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -127,7 +127,7 @@ function testrl
 
 function reparation
 {
-chemin='/tmp/badblocks_erreurs.txt'
+chemin="/tmp/badblocks_erreurs_$id_disk.txt"
 if [ -e $chemin ]; then
 # le fichier existe
 	if [ -s $chemin ]; then
@@ -198,6 +198,8 @@ else
 		exit 1
 	fi
 fi
+
+id_disk=$(smartctl -i /dev/sda | grep "Serial Number:" | awk '{print $3}')
 
 #-s Active le support SMART (ou pas s'il est déjà activé...)
 #-o Active la collecte des données hors connexion.
@@ -307,6 +309,8 @@ echo -e "    Temps de test SMART estimé"
 echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
 smartctl -c /dev/$disk | tail -n11 | head -n6
+
+touch "/tmp/badblocks_erreurs_$id_disk.txt"
 
 testrl
 
