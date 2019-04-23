@@ -149,14 +149,13 @@ rm -rf $chemin
 ### Début du programme ###
 
 #Variable date du jour
-dat=$(date "+%m/%d/%y_%H:%M")
+dat=$(date "+%m_%d_%y-%H_%M_%S")
 
 #Création des logs
-#mkdir -p smartlog
-#exec > >(tee -a smartlog/log_$dat)
-#exec 2>&1
-
-exec 1> smart_log_$dat 2>&1
+ficlog="smartlog_$dat"
+touch $ficlog
+exec > >(tee -a $ficlog)
+exec 2>&1
 
 clear
 echo " "
