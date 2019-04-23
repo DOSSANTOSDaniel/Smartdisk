@@ -189,10 +189,10 @@ read -p "Disque à tester : " -n 4 disk
 echo " "
 if [[ $disk =~ ^[s|h][d][a-z]$ || $disk =~ ^[m][d][0-9]$ ]]
 then
-	echo "saisie correcte"
+	echo "saisie correcte de $disk"
 else
 	echo "Saisie incorrecte"
-	read -p "Voulez vous recommencer [o] ou arrêter le programme [n] ?" -n 1 ffon
+	read -p "Voulez vous recommencer [o] ou arrêter le programme [x] ?" -n 1 ffon
 	echo " "
 	if [[ $ffon == "o" || $ffon == "O" ]]
 	then
@@ -334,7 +334,7 @@ smartctl -q errorsonly -H -l selftest /dev/$disk
 echo " "
 echo "FIN DU PROGRAMME S.M.A.R.T_disk"
 echo " "
-read -p "Tester un autre disque[o] ou arrêter le programme[n] ? : " -n 1 final
+read -p "Tester un autre disque[o] ou arrêter le programme[x] ? : " -n 1 final
 echo " "
 if [[ $final == "o" || $final == "O" ]]
 then
