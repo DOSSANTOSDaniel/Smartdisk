@@ -226,7 +226,7 @@ echo " "
 #numéro de série du disque
 echo "    Informations disque dur"
 echo "-------------------------------"
-smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|User Capacity:\|Rotation Rate:\)'
+smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|Rotation Rate:\)'
 
 echo " "
 #heures de fonctionnement
