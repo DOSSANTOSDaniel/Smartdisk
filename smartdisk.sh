@@ -25,13 +25,6 @@
 #  	Daniel DOS SANTOS < daniel.massy91@gmail.com >
 #----------------------------------------------------------------############################
 
-#Variable date du jour
-#dat=$(date "+%m/%d/%y_%H:%M")
-
-#Création des logs
-#mkdir -p smartlog
-#exec > >(tee -a smartlog/log_$dat)
-#exec 2>&1
 
 ### Les fonctions ###
 
@@ -99,7 +92,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -wsv /dev/$disk > /tmp/badblocks_erreurs_$id_disk.txt
+		badblocks -wsv /dev/$disk > badblocks_erreurs_$id_disk.txt
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -108,7 +101,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -nsv /dev/$disk > /tmp/badblocks_erreurs_$id_disk.txt
+		badblocks -nsv /dev/$disk > badblocks_erreurs_$id_disk.txt
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -127,7 +120,7 @@ function testrl
 
 function reparation
 {
-chemin="/tmp/badblocks_erreurs_$id_disk.txt"
+chemin="badblocks_erreurs_$id_disk.txt"
 if [ -e $chemin ]; then
 # le fichier existe
 	if [ -s $chemin ]; then
@@ -154,6 +147,14 @@ rm -rf $chemin
 }
 
 ### Début du programme ###
+
+#Variable date du jour
+dat=$(date "+%m/%d/%y_%H:%M")
+
+#Création des logs
+mkdir -p smartlog
+exec > >(tee -a smartlog/log_$dat)
+exec 2>&1
 
 clear
 echo " "
@@ -311,7 +312,7 @@ echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
 smartctl -c /dev/$disk | tail -n11 | head -n6
 
-touch "/tmp/badblocks_erreurs_$id_disk.txt"
+touch "badblocks_erreurs_$id_disk.txt"
 
 testrl
 
