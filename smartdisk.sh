@@ -162,7 +162,7 @@ echo " "
 echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
-
+echo -e "Date et heure : $dat"
 echo -e "\n En cours d'actualisation! \n"
 apt-get update > /dev/null
 
