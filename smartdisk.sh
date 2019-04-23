@@ -152,9 +152,11 @@ rm -rf $chemin
 dat=$(date "+%m/%d/%y_%H:%M")
 
 #Création des logs
-mkdir -p smartlog
-exec > >(tee -a smartlog/log_$dat)
-exec 2>&1
+#mkdir -p smartlog
+#exec > >(tee -a smartlog/log_$dat)
+#exec 2>&1
+
+exec 1> smart_log_$dat 2>&1
 
 clear
 echo " "
@@ -184,7 +186,7 @@ echo " "
 #Choix du disque à tester
 echo "Choix du disque à tester"
 echo "Exemples [ sdX, mdX ou hdX ]"
-read -p "Disque à tester : " -n 3 disk
+read -p "Disque à tester : " -n 4 disk
 echo " "
 if [[ $disk =~ ^[s|h][d][a-z]$ || $disk =~ ^[m][d][0-9]$ ]]
 then
