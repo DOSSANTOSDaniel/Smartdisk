@@ -236,10 +236,10 @@ then
 	echo -e "\n Données en heures correcte! \n"
 elif [ -z $heures ]
 	echo -e "Pas d'information sur la données Power-On Hours (POH)"
-	echo -e "Impossible de continuer!"
+	echo -e "Impossible de continuer! \n"
 	exit 1
 else
-	echo -e "Impossible de continuer!"
+	echo -e "Impossible de continuer! \n"
 	exit 1
 fi
 #Non arrondie
