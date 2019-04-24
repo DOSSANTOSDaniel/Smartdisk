@@ -44,4 +44,4 @@ Donnée du seuil
 # à faire
 * Afficher une estimation des testes Badblocks.
 * Compatibilité avec les données en minutes.
-* A l'aide du tableau SMART afficher les composant du disque en panne.
+* A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles d'être en panne.
