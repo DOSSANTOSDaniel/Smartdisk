@@ -1,5 +1,5 @@
-# On peut aussi utiliser le programme [Gsmartcontrol](https://gsmartcontrol.sourceforge.io/home/)
-# Description:
+# Smartdisk
+## Description:
 Script permettant:
 - D'afficher le numéro de série d'un disque dur.
 - D'afficher le temps en fonctionnement d'un disque dur.
@@ -8,10 +8,10 @@ Script permettant:
 - Effectue des tests de secteurs avec Badblocks.
 - Tenter de réparer les secteurs défectueux sur un disque.
 
-# Usage: ./smartdisk.sh
+## Usage: ./smartdisk.sh
 Exécuter le script en root!
 
-# Compatibilité:
+## Compatibilité:
 Les disques durs supportant les attributs S.M.A.R.T sont:
 Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
 
@@ -41,7 +41,9 @@ Donnée du seuil
 <p>Entre 35000 et 39999 ==> [ ~80% ]</p>
 <p>Plus grand ou égal à 40000 ==> [ ~100% ]</p>
 
-# à faire
+## à faire
 * Afficher une estimation des testes Badblocks.
 * Compatibilité avec les données en minutes.
 * A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
+
+# Voir aussi le programme [Gsmartcontrol](https://gsmartcontrol.sourceforge.io/home/)
