@@ -15,8 +15,7 @@ Exécuter le script en root!
 Les disques durs supportant les attributs S.M.A.R.T sont:
 Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
 
-Ce script s'est basé sur la données Power-On Hours (POH) pour
-déterminer la date de l'erreur fatale.
+Ce script s'est basé sur la données Power-On Hours (POH).
 Mais certains constructeurs utilisent cette données en minutes
 par conséquent ce script ne sera pas compatible.
 
