@@ -1,0 +1,22 @@
+[3J[H[2J 
+    Début du programme S.M.A.R.T_disk
+------------------------------------------
+ 
+Date et heure : 04_24_19-08_14_31
+
+ En cours d'actualisation! 
+
+[3J[H[2J
+ smartmontools est déjà installé 
+
+[3J[H[2J
+ bc est déjà installé 
+
+[3J[H[2J
+ e2fsprogs est déjà installé 
+
+[3J[H[2J
+ lshw est déjà installé 
+
+[3J[H[2J./smartdisk.sh: ligne 241: erreur de syntaxe près du symbole inattendu « else »
+./smartdisk.sh: ligne 241: `else'
