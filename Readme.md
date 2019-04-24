@@ -15,8 +15,8 @@ Exécuter le script en root!
 Les disques durs supportant les attributs S.M.A.R.T sont:
 Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
 
-Ce script s'est basé sur la données Power-On Hours (POH).
-Mais certains constructeurs utilisent cette données en minutes
+- Ce script s'est basé sur la données Power-On Hours (POH).
+- Mais certains constructeurs utilisent cette données en minutes
 par conséquent ce script ne sera pas compatible.
 
 Données utilisées
@@ -46,4 +46,4 @@ Donnée du seuil
 * Compatibilité avec les données en minutes.
 * A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
 
-# Voir aussi le programme [Gsmartcontrol](https://gsmartcontrol.sourceforge.io/home/)
+### Voir aussi le programme [Gsmartcontrol](https://gsmartcontrol.sourceforge.io/home/)
