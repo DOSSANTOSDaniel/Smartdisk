@@ -169,6 +169,11 @@ echo "    Début du programme S.M.A.R.T_disk"
 echo "------------------------------------------"
 echo " "
 echo -e "Date et heure : $dat"
+if [ LOGNAME != "root"]
+then
+	echo -e "\n Attention vous devez exécuter ce script en tant que root! \n"
+	exit 1
+fi
 echo -e "\n En cours d'actualisation! \n"
 apt-get update > /dev/null
 
