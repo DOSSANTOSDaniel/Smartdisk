@@ -42,4 +42,17 @@ Donnée du seuil
 * Compatibilité avec les données en minutes.
 * A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
 
+#### Autre aide
+Test en destruction écriture:
+badblocks -wsv /dev/sdX > badblocks.txt
+
+Test en lécture:
+badblocks -nsv /dev/sdX > badblocks.txt
+
+Réparation:
+e2fsck -cfpv /dev/sdx  < badblocks.txt
+
+Ou avec la commande fsck:
+sudo fsck -C -t ext4 -l badblocks.txt /dev/sdxx
+
 ### Voir aussi le programme [Gsmartcontrol](https://gsmartcontrol.sourceforge.io/home/)
