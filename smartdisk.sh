@@ -43,25 +43,29 @@ function installation
 		if [[ $? == 0 ]]
 		then
 			echo -e "\n Installation réussi \n"
-		elif [[ $? == 1 ]]
-		then
-			echo -e "\n Installation de $1 impossible \n"
-			exit 1
 		else
-			echo -e "\n Erreur \n"
-			exit 1
+			echo -e "\n Installation de $1 Impossible!\n"
+			exit1
 		fi
 	else
 		pri='type -a'
 		$pri $1
-		if [[ $? == "0" && $1 != "" ]]
+		if [[ $? == "0" ]]
 		then
 			echo -e "\n La commande $1 est installée"
 			echo -e "$1 n'est pas gérée par DPKG \n"
 		else
-			echo -e "\n Erreur \n"
-			echo -e "Installation impossible \n"
-			exit 1
+			echo -e "\n Installation de $1 en cours \n"
+			apt-get install -y $1
+
+			if [[ $? == 0 ]]
+			then
+				echo -e "\n Installation réussi \n"
+			else
+				echo -e "\n Erreur \n"
+				echo -e "\n Installation de $1 Impossible!\n"
+				exit1
+			fi
 		fi
 	fi
 }
@@ -79,6 +83,8 @@ function testrl
 	echo '[q] : quitter'
 	echo '--------------------'
 	read -p " Votre choix ==> " -n 1 choix
+	echo " "
+	read -p " Taper entrée pour valider! "
 	echo " "
 
 	case $choix in
@@ -185,7 +191,9 @@ echo " "
 #Choix du disque à tester
 echo "Choix du disque à tester"
 echo "Exemples [ sdX, mdX ou hdX ]"
-read -p "Disque à tester : " -n 4 disk
+read -p "Disque à tester : " -n 3 disk
+echo " "
+read -p " Taper entrée pour valider! "
 echo " "
 if [[ $disk =~ ^[s|h][d][a-z]$ || $disk =~ ^[m][d][0-9]$ ]]
 then
