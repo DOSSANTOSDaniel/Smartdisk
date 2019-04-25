@@ -52,7 +52,7 @@ badblocks -nsv /dev/sdX > badblocks.txt
 Réparation:
 e2fsck -cfpv /dev/sdx  < badblocks.txt
 
-ou avec la commande fsck:
+Ou avec la commande fsck:
 sudo fsck -C -t ext4 -l badblocks.txt /dev/sdxx
 
 ### Voir aussi le programme [Gsmartcontrol](https://gsmartcontrol.sourceforge.io/home/)
