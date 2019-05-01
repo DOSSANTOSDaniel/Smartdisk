@@ -37,6 +37,39 @@ Donnée du seuil
 - Entre 35000 et 39999 ==> [ ~80% ]
 - Plus grand ou égal à 40000 ==> [ ~100% ]
 
+Lecture des valeurs du tableau S.M.A.R.T
+-----------------------------------------
+
+| Colonne     | Description                                                             |
+|-------------|:-----------------------------------------------------------------------:|
+| VALUE       | Représente l’indice de fiabilité.                                       |
+| WORST       | Représente la plus petite valeur de VALUE enregistrée.                  |
+| THRESH      | Représente la valeur limite avant une dégradation ou un risque de panne.|
+| WHEN_FAILED | S’il y a une erreur cela affiche la probabilité de panne:               |
+|             |  1- Failing_Now: panne imminente.                                       |
+|             |  2- In_the_past: indique qu’il y a eu une anomalie par le passé.        |
+| RAW_VALUE   | Valeur mesuré.                                                          |
+
+**Important:**
+Il faut que les valeurs de la colonne  VALUE soient toujours supérieures aux valeurs de la colonne THRESH, si c’est pas le cas cela veut dire qu’il y a un problème sur la ligne en question.
+
+Les pannes courantes, voir tableau S.M.A.R.T:
+----------------------------------------------
+
+| Ligne par ID          | Panne                                                                 |
+|-----------------------|:---------------------------------------------------------------------:|
+| 01                    | Surface du disque ou tête de lecture dégradée.                        |
+| 02                    | Problème générale.                                                    |
+| 05                    | Trop de secteurs réalloués la vitesse de lecture et écriture diminue. |
+| 07, 08, 10, 198 et 11 | Dégradation du sous-système mécanique.                                |
+| 191                   | Erreurs dues à des chocs externes ou vibrations violentes.            |
+
+*Documentation S.M.A.R.T:*
+https://fr.wikipedia.org/wiki/Self-Monitoring%2C_Analysis_and_Reporting_Technology
+
+*Estimations des temps de vie:*
+https://www.extremetech.com/computing/170748-how-long-do-hard-drives-actually-live-for
+
 ## à faire
 * Afficher une estimation des testes Badblocks.
 * Compatibilité avec les données en minutes.
