@@ -43,6 +43,7 @@ Donnée du seuil
 * A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
 * Organisation des logs à revoir.
 * Afficher à la fin un récapitulatif des disques téstés ou créer un fichier avec les infos.
+* Ajouter un teste de vitesse d'écriture et de lécture voir "Memo_Scripts_Bash".
 
 #### Autre aide
 Test en destruction écriture:
