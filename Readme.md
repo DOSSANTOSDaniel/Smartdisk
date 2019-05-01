@@ -41,6 +41,8 @@ Donnée du seuil
 * Afficher une estimation des testes Badblocks.
 * Compatibilité avec les données en minutes.
 * A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
+* Organisation des logs à revoir.
+* Afficher à la fin un récapitulatif des disques téstés ou créer un fichier avec les infos.
 
 #### Autre aide
 Test en destruction écriture:
