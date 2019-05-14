@@ -95,19 +95,21 @@ function testrl
 	#"-t long” désigne un test long et plus approfondie
 	"W" | "w")
 		echo " "
+		touch "badblocks_erreurs-$id_disk"
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -wsv /dev/$disk | tee -a $rapport #> badblocks_erreurs_$id_disk.txt
+		badblocks -wsv /dev/$disk > badblocks_erreurs-$id_disk
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
 	"R" | "r")
 		echo " "
+		touch "badblocks_erreurs-$id_disk"
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -nsv /dev/$disk | tee -a $rapport #> badblocks_erreurs_$id_disk.txt
+		badblocks -nsv /dev/$disk > badblocks_erreurs-$id_disk
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -126,7 +128,7 @@ function testrl
 
 function reparation
 {
-chemin="badblocks_erreurs_$id_disk.txt"
+chemin="badblocks_erreurs-$id_disk"
 if [ -e $chemin ]; then
 # le fichier existe
 	if [ -s $chemin ]; then
@@ -260,12 +262,6 @@ else
 	exit 1
 fi
 
-#Non arrondie
-#jours=$(echo "$heures/24" | bc -l)
-#semaines=$(echo "$heures/168" | bc -l)
-#mois=$(echo "$heures/730.001" | bc -l)
-#ans=$(echo "$heures/8760" | bc -l)
-
 #Arrondie
 jours=`printf "%.1f\n" $(echo "$heures/24" | bc -l | sed 's/\./,/')`
 semaines=`printf "%.1f\n" $(echo "$heures/168" | bc -l | sed 's/\./,/')`
@@ -338,8 +334,6 @@ echo -e "    Temps de test SMART estimé"
 echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
 smartctl -c /dev/$disk | tail -n11 | head -n6
-
-touch "badblocks_erreurs-$id_disk.txt"
 
 testrl
 
