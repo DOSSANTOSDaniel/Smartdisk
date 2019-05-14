@@ -274,23 +274,23 @@ ans=`printf "%.1f\n" $(echo "$heures/8760" | bc -l | sed 's/\./,/')`
 
 #Temps écoulé
 case 1 in
-$(($heures<= 23))) echo -e "Fonctionnement depuis : $heures heures\n";;
-$(($heures>= 24 & $heures<= 167))) echo -e "Fonctionnement depuis : $jours jours\n";;
-$(($heures>= 168 & $heures<= 729))) echo -e "Fonctionnement depuis : $semaines semaines\n";;
-$(($heures>= 730 & $heures<= 8759))) echo -e "Fonctionnement depuis : $mois mois\n";;
-$(($heures>= 6087))) echo -e "Fonctionnement depuis : $ans ans\n";;
+$(($heures<= 23))) echo -e "Fonctionnement depuis : $heures heures\n" | tee -a $rapport;;
+$(($heures>= 24 & $heures<= 167))) echo -e "Fonctionnement depuis : $jours jours\n" | tee -a $rapport;;
+$(($heures>= 168 & $heures<= 729))) echo -e "Fonctionnement depuis : $semaines semaines\n" | tee -a $rapport;;
+$(($heures>= 730 & $heures<= 8759))) echo -e "Fonctionnement depuis : $mois mois\n" | tee -a $rapport;;
+$(($heures>= 6087))) echo -e "Fonctionnement depuis : $ans ans\n" | tee -a $rapport;;
 *) exit 1;;
 esac
 
 #Seuil d'alarme
-echo -e "Probabilité de panne par l'usure naturelle : \n"
+echo -e "Probabilité de panne par l'usure naturelle : \n" | tee -a $rapport
 case 1 in
-$(($heures<= 20000))) echo -e " ==> [ ~0% ]\n";;
-$(($heures>= 20001 & $heures<= 24999))) echo -e " ==> [ ~20% ]\n";;
-$(($heures>= 25000 & $heures<= 29999))) echo -e " ==> [ ~40% ]\n";;
-$(($heures>= 30000 & $heures<= 34999))) echo -e " ==> [ ~60% ]\n";;
-$(($heures>= 35000 & $heures<= 39999))) echo -e " ==> [ ~80% ]\n";;
-$(($heures>= 40000))) echo -e " ==> [ ~100% ]\n";;
+$(($heures<= 20000))) echo -e " ==> [ ~0% ]\n" | tee -a $rapport;;
+$(($heures>= 20001 & $heures<= 24999))) echo -e " ==> [ ~20% ]\n" | tee -a $rapport;;
+$(($heures>= 25000 & $heures<= 29999))) echo -e " ==> [ ~40% ]\n" | tee -a $rapport;;
+$(($heures>= 30000 & $heures<= 34999))) echo -e " ==> [ ~60% ]\n" | tee -a $rapport;;
+$(($heures>= 35000 & $heures<= 39999))) echo -e " ==> [ ~80% ]\n" | tee -a $rapport;;
+$(($heures>= 40000))) echo -e " ==> [ ~100% ]\n" | tee -a $rapport;;
 *) exit 1;;
 esac
 
@@ -299,7 +299,7 @@ rest=$(echo "40000-$heures" | bc -l)
 
 if [[ $rest =~ ^-+ || $rest =~ ^0+ ]]
 then
-	echo "Durée de vie du disque dépassé, plus de 40 000 heures de fonctionnement!"
+	echo "Durée de vie du disque dépassé, plus de 40 000 heures de fonctionnement!" | tee -a $rapport
 else
 	#Non arrondie
 	#jrest=$(echo "$rest/24" | bc -l)
@@ -313,13 +313,13 @@ else
 	mrest=`printf "%.1f\n" $(echo "$rest/730.001" | bc -l | sed 's/\./,/')`
 	arest=`printf "%.1f\n" $(echo "$rest/8760" | bc -l | sed 's/\./,/')`
 
-	echo -e "Temps restant avant une éventuelle panne fatale : \n"
+	echo -e "Temps restant avant une éventuelle panne fatale : \n" | tee -a $rapport
 	case 1 in
-	$(($rest<= 23))) echo -e " ==> ~ $rest heures\n";;
-	$(($rest>= 24 & $rest<= 167))) echo -e " ==> ~ $jrest jours\n";;
-	$(($rest>= 168 & $rest<= 729))) echo -e " ==> ~ $srest semaines\n";;
-	$(($rest>= 730 & $rest<= 8759))) echo -e " ==> ~ $mrest mois\n";;
-	$(($rest>= 8760))) echo -e " ==> ~ $arest ans\n";;
+	$(($rest<= 23))) echo -e " ==> ~ $rest heures\n" | tee -a $rapport;;
+	$(($rest>= 24 & $rest<= 167))) echo -e " ==> ~ $jrest jours\n" | tee -a $rapport;;
+	$(($rest>= 168 & $rest<= 729))) echo -e " ==> ~ $srest semaines\n" | tee -a $rapport;;
+	$(($rest>= 730 & $rest<= 8759))) echo -e " ==> ~ $mrest mois\n" | tee -a $rapport;;
+	$(($rest>= 8760))) echo -e " ==> ~ $arest ans\n" | tee -a $rapport;;
 	*) exit 3;;
 	esac
 fi
