@@ -98,7 +98,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -wsv /dev/$disk > badblocks_erreurs_$id_disk.txt
+		badblocks -wsv /dev/$disk | tee -a $rapport #> badblocks_erreurs_$id_disk.txt
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -107,7 +107,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -nsv /dev/$disk > badblocks_erreurs_$id_disk.txt
+		badblocks -nsv /dev/$disk | tee -a $rapport #> badblocks_erreurs_$id_disk.txt
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -157,11 +157,12 @@ rm -rf $chemin
 #Variable date du jour
 dat=$(date "+%m_%d_%y-%H_%M_%S")
 
-#Création des logs
-ficlog="smartlog_$dat"
-touch $ficlog
-exec > >(tee -a $ficlog)
-exec 2>&1
+rapport="rapplog-$dat"
+
+#Bannière du fichier de rapport
+echo "    Rapport S.M.A.R.T_disk" > $rapport   
+echo "------------------------------------------" >> $rapport
+echo -e "\n Date et heure : $dat \n" >> $rapport
 
 clear
 echo " "
@@ -177,7 +178,7 @@ fi
 echo -e "\n En cours d'actualisation! \n"
 apt-get update > /dev/null
 
-#Installation de smartmontools,bc et badblocks
+#Installation de smartmontools,bc,badblocks et lshw
 installation smartmontools
 installation bc
 installation e2fsprogs
@@ -187,11 +188,10 @@ suivant="o"
 while [[ $suivant == "o" || $suivant == "O" ]]
 do
 #Scan des disques du système
-echo " "
-echo "    Les disques"
-echo "-------------------"
-lshw -short -C disk | cut -c19-
-echo " "
+echo -e "\n  Les disques  " | tee -a $rapport
+echo "-------------------" | tee -a $rapport
+lshw -short -C disk | cut -c19- | tee -a $rapport
+echo " " | tee -a $rapport
 
 #Choix du disque à tester
 echo "Choix du disque à tester"
@@ -238,9 +238,9 @@ else
 fi
 
 #numéro de série du disque
-echo -e "\n    Informations disque dur"
-echo -e "-------------------------------\n"
-smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|Rotation Rate:\)'
+echo -e "\n    Informations disque dur" | tee -a $rapport
+echo -e "-------------------------------\n" | tee -a $rapport
+smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|Rotation Rate:\)' | tee -a $rapport
 echo " "
 #heures de fonctionnement
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
@@ -337,7 +337,7 @@ echo -e "----------------------------------------------\n"
 #Se faire une idée de la durée des testes
 smartctl -c /dev/$disk | tail -n11 | head -n6
 
-touch "badblocks_erreurs_$id_disk.txt"
+touch "badblocks_erreurs-$id_disk.txt"
 
 testrl
 
