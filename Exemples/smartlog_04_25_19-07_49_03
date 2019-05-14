@@ -1,129 +1,0 @@
-[3J[H[2J 
-    Début du programme S.M.A.R.T_disk
-------------------------------------------
- 
-Date et heure : 04_25_19-07_49_03
-
- En cours d'actualisation! 
-
-[3J[H[2J
- smartmontools est déjà installé 
-
-[3J[H[2J
- bc est déjà installé 
-
-[3J[H[2J
- e2fsprogs est déjà installé 
-
-dpkg-query: le paquet « lshw » n'est pas installé et aucune information n'est disponible
-Utilisez dpkg --info (= dpkg-deb --info) pour examiner les fichiers
-archives, et dpkg --contents (= dpkg-deb --contents) pour afficher leur
-contenu.
-[3J[H[2J./smartdisk.sh: ligne 52 : type: lshw : non trouvé
-
- Installation de lshw en cours 
-
-Lecture des listes de paquets…
-Construction de l'arbre des dépendances…
-Lecture des informations d'état…
-Les NOUVEAUX paquets suivants seront installés :
-  lshw
-0 mis à jour, 1 nouvellement installés, 0 à enlever et 11 non mis à jour.
-Il est nécessaire de prendre 231 ko dans les archives.
-Après cette opération, 708 ko d'espace disque supplémentaires seront utilisés.
-Réception de :1 http://fr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 lshw amd64 02.18-0.1ubuntu6.18.04.1 [231 kB]
-231 ko réceptionnés en 0s (3 102 ko/s)
-Sélection du paquet lshw précédemment désélectionné.
-(Lecture de la base de données... (Lecture de la base de données... 5%(Lecture de la base de données... 10%(Lecture de la base de données... 15%(Lecture de la base de données... 20%(Lecture de la base de données... 25%(Lecture de la base de données... 30%(Lecture de la base de données... 35%(Lecture de la base de données... 40%(Lecture de la base de données... 45%(Lecture de la base de données... 50%(Lecture de la base de données... 55%(Lecture de la base de données... 60%(Lecture de la base de données... 65%(Lecture de la base de données... 70%(Lecture de la base de données... 75%(Lecture de la base de données... 80%(Lecture de la base de données... 85%(Lecture de la base de données... 90%(Lecture de la base de données... 95%(Lecture de la base de données... 100%(Lecture de la base de données... 282584 fichiers et répertoires déjà installés.)
-Préparation du dépaquetage de .../lshw_02.18-0.1ubuntu6.18.04.1_amd64.deb ...
-Dépaquetage de lshw (02.18-0.1ubuntu6.18.04.1) ...
-Paramétrage de lshw (02.18-0.1ubuntu6.18.04.1) ...
-Traitement des actions différées (« triggers ») pour man-db (2.8.3-2ubuntu0.1) ...
-
- Installation réussi 
-
-[3J[H[2J 
-    Les disques
--------------------
-Périphérique  Classe      Description
-=======================================
-/dev/sda        disk        1TB WDC WD10EZRX-00A
-/dev/sdb        disk        480GB SanDisk SSD PLUS
- 
-Choix du disque à tester
-Exemples [ sdX, mdX ou hdX ]
-Disque à tester :  Taper entrée pour valider!  
-saisie correcte de sda
- 
-Pas d'erreur constaté sur les indicateurs S.M.A.R.T
-
-
-    Informations disque dur
--------------------------------
-
-Model Family:     Western Digital Green
-Device Model:     WDC WD10EZRX-00A8LB0
-Serial Number:    WD-WCC1U0483990
- 
-
- Données en heures correcte! 
-
-Fonctionnement depuis : 2,2 ans
-
-Probabilité de panne par l'usure naturelle : 
-
- ==> [ ~0% ]
-
-Temps restant avant une éventuelle panne fatale : 
-
- ==> ~ 2,3 ans
-
-Voulez-vous afficher le tableau des valeurs S.M.A.R.T oui[o] non[n] ? :  
-smartctl 6.6 2016-05-31 r4324 [x86_64-linux-4.15.0-47-generic] (local build)
-Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
-
-=== START OF READ SMART DATA SECTION ===
-SMART Attributes Data Structure revision number: 16
-Vendor Specific SMART Attributes with Thresholds:
-ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
-  1 Raw_Read_Error_Rate     0x002f   200   200   051    Pre-fail  Always       -       0
-  3 Spin_Up_Time            0x0027   138   132   021    Pre-fail  Always       -       4083
-  4 Start_Stop_Count        0x0032   097   097   000    Old_age   Always       -       3034
-  5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
-  7 Seek_Error_Rate         0x002e   200   200   000    Old_age   Always       -       0
-  9 Power_On_Hours          0x0032   074   074   000    Old_age   Always       -       19528
- 10 Spin_Retry_Count        0x0032   100   100   000    Old_age   Always       -       0
- 11 Calibration_Retry_Count 0x0032   100   100   000    Old_age   Always       -       0
- 12 Power_Cycle_Count       0x0032   098   098   000    Old_age   Always       -       2723
-192 Power-Off_Retract_Count 0x0032   196   196   000    Old_age   Always       -       3670
-193 Load_Cycle_Count        0x0032   124   124   000    Old_age   Always       -       229938
-194 Temperature_Celsius     0x0022   109   098   000    Old_age   Always       -       34
-196 Reallocated_Event_Count 0x0032   200   200   000    Old_age   Always       -       0
-197 Current_Pending_Sector  0x0032   200   200   000    Old_age   Always       -       0
-198 Offline_Uncorrectable   0x0030   200   200   000    Old_age   Offline      -       0
-199 UDMA_CRC_Error_Count    0x0032   200   200   000    Old_age   Always       -       0
-200 Multi_Zone_Error_Rate   0x0008   200   200   000    Old_age   Offline      -       0
-
- 
-    Temps de test SMART estimé
-----------------------------------------------
-
-					General Purpose Logging supported.
-Short self-test routine 
-recommended polling time: 	 (   2) minutes.
-Extended self-test routine
-recommended polling time: 	 ( 151) minutes.
-Conveyance self-test routine
- 
-     Menu test  
---------------------
-[s] : SMART Rapide
-[c] : SMART plus complet
-[r] : Badblocks (lécture)
-[w] : Badblocks (écriture)
-[q] : quitter
---------------------
- Votre choix ==>  Taper entrée pour valider!  
-
- FIN DU PROGRAMME S.M.A.R.T_disk 
-

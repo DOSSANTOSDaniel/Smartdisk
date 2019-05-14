@@ -160,6 +160,7 @@ dat=$(date "+%m_%d_%y-%H_%M_%S")
 rapport="smartrapplog"
 
 #Bannière du fichier de rapport
+echo "#######################################################################################" >> $rapport 
 echo " " >> $rapport 
 echo -e "\n    Rapport S.M.A.R.T_disk" >> $rapport   
 echo "------------------------------------------" >> $rapport
