@@ -157,7 +157,7 @@ rm -rf $chemin
 #Variable date du jour
 dat=$(date "+%m_%d_%y-%H_%M_%S")
 
-rapport="rapplog-$dat"
+rapport="smartrapplog"
 
 #Bannière du fichier de rapport
 echo " " >> $rapport 
