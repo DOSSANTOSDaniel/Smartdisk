@@ -95,7 +95,6 @@ function testrl
 	#"-t long” désigne un test long et plus approfondie
 	"W" | "w")
 		echo " "
-		touch "badblocks_erreurs-$id_disk"
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
@@ -105,7 +104,6 @@ function testrl
 		exit 2;;
 	"R" | "r")
 		echo " "
-		touch "badblocks_erreurs-$id_disk"
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
