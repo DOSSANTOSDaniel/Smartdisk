@@ -127,29 +127,30 @@ function testrl
 function reparation
 {
 chemin="badblocks_erreurs-$id_disk"
-if [ -e $chemin ]; then
+if [ -e $chemin ]
+then
 # le fichier existe
-	if [ -s $chemin ]; then
-                echo "Des erreurs ont été trouvés!" # fichier non vide
+	if [ -s $chemin ] # fichier != 0
+	then
+                echo "Des erreurs ont été trouvés!" | tee -a $rapport
                 read -p "Voulez vous réparer le disque [o]oui [n]non ?" repa
 
                 case $repa in
         "o" | "O")
                 echo " "
                 e2fsck -cfpv /dev/$disk  < $chemin;;
-	"n" | "N")
-                echo "Disque non réparé!";;
+		"n" | "N")
+                echo "Disque non réparé!" | tee -a $rapport;;
                 *)
                 echo " "
                 echo "Erreur de saisie ! ";;
                 esac
-        else
-                echo "Pas d'erreur trouvé!" #fichier vide
+    else
+        echo "Pas d'erreur trouvé!" | tee -a $rapport #fichier vide
 	fi
 else
-	echo "Erreur fichier non trouvé!"
+	echo "Erreur fichier non trouvé! | tee -a $rapport"
 fi
-rm -rf $chemin
 }
 
 ### Début du programme ###
