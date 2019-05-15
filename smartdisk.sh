@@ -98,7 +98,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -wsv /dev/$disk > badblocks_erreurs-$id_disk
+		badblocks -wsv /dev/$disk >> badblocks_erreurs-$id_disk
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -107,7 +107,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -nsv /dev/$disk > badblocks_erreurs-$id_disk
+		badblocks -nsv /dev/$disk >> badblocks_erreurs-$id_disk
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
