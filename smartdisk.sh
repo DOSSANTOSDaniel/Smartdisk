@@ -98,7 +98,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -wsv /dev/$disk >> badblocks_erreurs-$id_disk
+		badblocks -wsv /dev/$disk > badblocks_erreurs-$id_disk
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -107,7 +107,7 @@ function testrl
 	#"-w" test en écriture
 	#"-s" barre de progression
 	#"-v" verbosité
-		badblocks -nsv /dev/$disk >> badblocks_erreurs-$id_disk
+		badblocks -nsv /dev/$disk > badblocks_erreurs-$id_disk
 		reparation
 		echo -e "\n FIN DU PROGRAMME S.M.A.R.T_disk \n"
 		exit 2;;
@@ -126,7 +126,7 @@ function testrl
 
 function reparation
 {
-chemin="badblocks_erreurs-$id_disk"
+chemin=badblocks_erreurs-$id_disk
 if [ -e $chemin ]
 then
 # le fichier existe
@@ -139,7 +139,7 @@ then
         "o" | "O")
                 echo " "
                 e2fsck -cfpv /dev/$disk  < $chemin;;
-		"n" | "N")
+	"n" | "N")
                 echo "Disque non réparé!" | tee -a $rapport;;
                 *)
                 echo " "
@@ -218,7 +218,7 @@ else
 	fi
 fi
 
-id_disk=$(smartctl -i /dev/sda | grep "Serial Number:" | awk '{print $3}')
+id_disk=$(smartctl -i /dev/$disk | grep "Serial Number:" | awk '{print $3}')
 
 #-s Active le support SMART (ou pas s'il est déjà activé...)
 #-o Active la collecte des données hors connexion.
@@ -227,7 +227,7 @@ smartctl -s on -o on -S on /dev/$disk > /dev/null
 
 #Si le résultat est PASSED, c’est qu’il n’y a pas d’erreur de constatée sur les indicateurs S.M.A.R.T,
 #Si par contre le résultat est FAILING, c’est qu’un ou plusieurs #indicateurs affichent des erreurs.
-testpassed=$(smartctl -H /dev/sda | grep "SMART" | sed -n "2p" | awk -F':' '{print $2}')
+testpassed=$(smartctl -H /dev/$disk | grep "SMART" | sed -n "2p" | awk -F':' '{print $2}')
 
 #Teste le résultat de PASSED
 echo " "
