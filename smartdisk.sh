@@ -146,10 +146,10 @@ then
                 echo "Erreur de saisie ! ";;
                 esac
     else
-        echo "Pas d'erreur trouvé!" | tee -a $rapport #fichier vide
+        echo "Pas d'erreurs trouvées!" | tee -a $rapport #fichier vide
 	fi
 else
-	echo "Erreur fichier non trouvé! | tee -a $rapport"
+	echo "Erreur- fichier non trouvé! | tee -a $rapport"
 fi
 }
 
@@ -233,7 +233,7 @@ testpassed=$(smartctl -H /dev/$disk | grep "SMART" | sed -n "2p" | awk -F':' '{p
 echo " "
 if [[ $testpassed == " PASSED" ]]
 then
-        echo -e "Pas d'erreur constaté sur les indicateurs S.M.A.R.T\n"
+        echo -e "Pas d'erreurs constatées sur les indicateurs S.M.A.R.T\n"
 else
         echo "Disque dur endommagé ou non compatible avec les données S.M.A.R.T"
 	echo -e "veuillez sauvegarder vos données sur un autre support !\n"
@@ -253,7 +253,7 @@ then
 	echo -e "\n Données en heures correcte! \n"
 elif [ -z $heures ]
 then
-	echo -e "Pas d'information sur la données Power-On Hours (POH)"
+	echo -e "Pas d'information sur la donnée Power-On Hours (POH)"
 	echo -e "Impossible de continuer! \n"
 	exit 1
 else
@@ -323,7 +323,7 @@ read -p "Voulez-vous afficher le tableau des valeurs S.M.A.R.T oui[o] non[n] ? :
 echo " "
 if [[ $choixts == "o" || $choixts == "O" ]]
 then
-	smartctl -A /dev/$disk
+	smartctl -A /dev/$disk | tee -a $rapport
 else
 	sleep 1
 fi
