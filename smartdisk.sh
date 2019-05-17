@@ -205,9 +205,9 @@ read -p " Taper entrée pour valider! "
 echo " "
 if [[ $disk =~ ^[s|h][d][a-z]$ || $disk =~ ^[m][d][0-9]$ ]]
 then
-	echo "saisie correcte de $disk"
+	echo "saisie correcte de $disk" | tee -a $rapport
 else
-	echo "Saisie incorrecte"
+	echo "Saisie incorrecte" | tee -a $rapport
 	read -p "Voulez vous recommencer [o] ou arrêter le programme [x] ?" -n 1 ffon
 	echo " "
 	if [[ $ffon == "o" || $ffon == "O" ]]
