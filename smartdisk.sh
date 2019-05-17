@@ -9,7 +9,7 @@
 #	4- Effectue les testes S.M.A.R.T sur un disque dur.
 #	5- Effectue des tests de secteurs avec Badblocks.
 #	6- Tente de réparer les sécteur défectueux d'un disque.
-#	7- Création de fichiers log datés.
+#	7- Création de fichiers de rapport.
 #----------------------------------------------------------------#
 # Usage: ./smartdisk.sh
 #	Exécuter le script en root!
