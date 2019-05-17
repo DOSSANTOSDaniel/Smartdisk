@@ -233,10 +233,10 @@ testpassed=$(smartctl -H /dev/$disk | grep "SMART" | sed -n "2p" | awk -F':' '{p
 echo " "
 if [[ $testpassed == " PASSED" ]]
 then
-        echo -e "Pas d'erreurs constatées sur les indicateurs S.M.A.R.T\n"
+        echo -e "Pas d'erreurs constatées sur les indicateurs S.M.A.R.T\n" | tee -a $rapport
 else
-        echo "Disque dur endommagé ou non compatible avec les données S.M.A.R.T"
-	echo -e "veuillez sauvegarder vos données sur un autre support !\n"
+        echo "Disque dur endommagé ou non compatible avec les données S.M.A.R.T" | tee -a $rapport
+	echo -e "veuillez sauvegarder vos données sur un autre support !\n" | tee -a $rapport
 	exit 1
 fi
 
@@ -244,7 +244,7 @@ fi
 echo -e "\n    Informations disque dur" | tee -a $rapport
 echo -e "-------------------------------\n" | tee -a $rapport
 smartctl -i /dev/$disk | grep '\(Model Family:\|Device Model:\|Serial Number:\|Rotation Rate:\)' | tee -a $rapport
-echo " "
+echo " " | tee -a $rapport
 #heures de fonctionnement
 heures=`smartctl -a /dev/$disk | grep Power_On_Hours | awk -F' ' '{print $10}'`
 
