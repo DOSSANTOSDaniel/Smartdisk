@@ -71,6 +71,7 @@ https://fr.wikipedia.org/wiki/Self-Monitoring%2C_Analysis_and_Reporting_Technolo
 https://www.extremetech.com/computing/170748-how-long-do-hard-drives-actually-live-for
 
 ## à faire
+* Sur le fichier de log on voit seulement « Pas d’erreurs trouvées » sans savoir quel est le disque concerné.
 * Afficher une estimation des testes Badblocks.
 * Compatibilité avec les données en minutes.
 * A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
