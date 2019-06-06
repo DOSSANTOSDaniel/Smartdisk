@@ -77,6 +77,7 @@ https://www.extremetech.com/computing/170748-how-long-do-hard-drives-actually-li
 * Organisation des logs à revoir.
 * Afficher à la fin un récapitulatif des disques téstés ou créer un fichier avec les infos.
 * Ajouter un teste de vitesse d'écriture et de lécture voir "Memo_Scripts_Bash".
+* Supprimer les fichiers d'erreur de Badblocks si pas d'erreur à la fin du script.
 
 #### Autre aide
 Test en destruction écriture:
