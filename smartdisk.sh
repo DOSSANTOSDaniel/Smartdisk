@@ -227,7 +227,7 @@ smartctl -s on -o on -S on /dev/$disk > /dev/null
 
 #Si le résultat est PASSED, c’est qu’il n’y a pas d’erreur de constatée sur les indicateurs S.M.A.R.T,
 #Si par contre le résultat est FAILING, c’est qu’un ou plusieurs #indicateurs affichent des erreurs.
-testpassed=$(smartctl -H /dev/$disk | grep "SMART" | sed -n "2p" | awk -F':' '{print $2}')
+testpassed=$(smartctl -H /dev/$disk | grep "SMART" | sed -n "3p" | awk -F':' '{print $2}')
 
 #Teste le résultat de PASSED
 echo " "
