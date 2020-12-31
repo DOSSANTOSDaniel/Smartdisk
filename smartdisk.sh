@@ -3,7 +3,7 @@
 # Description:
 #	Script permettant:
 #	1- D'afficher le numéro de série d'un disque dur.
-#	2- D'afficher le temps en fonctionnement d'un disque dur.
+#	2- D'afficher le temps de fonctionnement d'un disque dur.
 #	3- D'afficher une date préventive pour le changement
 #	d'un disque dur avant une éventuelle panne fatale possible.
 #	4- Effectue les testes S.M.A.R.T sur un disque dur.
