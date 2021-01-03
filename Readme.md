@@ -2,21 +2,18 @@
 ## Description:
 Script permettant:
 - D'afficher le numéro de série d'un disque dur.
-- D'afficher le temps en fonctionnement d'un disque dur.
-- D'afficher une date préventive pour le changement d'un disque dur avant une éventuelle panne fatale possible.
+- D'afficher le temps de fonctionnement d'un disque dur.
+- D'afficher une date préventive pour le changement d'un disque dur avant une éventuelle panne.
 - Effectue les testes S.M.A.R.T sur un disque dur.
 - Effectue des tests de secteurs avec Badblocks.
 - Tenter de réparer les secteurs défectueux sur un disque.
 
 ## Usage: ./smartdisk.sh
-Exécuter le script en root!
+Exécuter le script en tant que root!
 
 ## Compatibilité:
 - Les disques durs supportant les attributs S.M.A.R.T sont:
 Samsung, Seagate, IBM (Hitachi), Fujitsu, Maxtor, Western Digital
-- Ce script s'est basé sur la données Power-On Hours (POH).
-- Certains constructeurs utilisent cette données en minutes
-par conséquent ce script ne sera pas compatible.
 
 Données utilisées
 -------------------
@@ -27,15 +24,15 @@ Données utilisées
 
 Donnée du seuil
 ------------------
-<p>D'après mes recherches le seuil max pour la durée de vie d'un disque dur en production est de ~40 000 heures (4,6 ans).</p>
-<p>D'après cette information la probabilité de panne par l'usure naturelle est:</p>
+<p>D'après se que j'ai lu sur le web le seuil max pour la durée de vie d'un disque dur est de ~40 000 heures (4,6 ans).</p>
+<p>Fabrication d'une echelle de l'usure naturelle :</p>
 
-- Plus petit ou égal à 20000 ==> [ ~0% ]
-- Entre 20001 et 24999 ==> [ ~20% ]
-- Entre 25000 et 29999 ==> [ ~40% ]
-- Entre 30000 et 34999 ==> [ ~60% ]
-- Entre 35000 et 39999 ==> [ ~80% ]
-- Plus grand ou égal à 40000 ==> [ ~100% ]
+- Plus petit ou égal à 20000 heures ==> [ ~0% ]
+- Entre 20001 et 24999 heures ==> [ ~20% ]
+- Entre 25000 et 29999 heures ==> [ ~40% ]
+- Entre 30000 et 34999 heures ==> [ ~60% ]
+- Entre 35000 et 39999 heures ==> [ ~80% ]
+- Plus grand ou égal à 40000 heures ==> [ ~100% ]
 
 Lecture des valeurs du tableau S.M.A.R.T
 -----------------------------------------
@@ -51,7 +48,7 @@ Lecture des valeurs du tableau S.M.A.R.T
 | RAW_VALUE   | Valeur mesuré.                                                          |
 
 **Important:**
-Il faut que les valeurs de la colonne  VALUE soient toujours supérieures aux valeurs de la colonne THRESH, si c’est pas le cas cela veut dire qu’il y a un problème sur la ligne en question.
+Il faut que les valeurs de la colonne VALUE soient toujours supérieures aux valeurs de la colonne THRESH, si c’est pas le cas cela veut dire qu’il y a un problème sur la ligne en question.
 
 Les pannes courantes, voir tableau S.M.A.R.T:
 ----------------------------------------------
@@ -65,22 +62,12 @@ Les pannes courantes, voir tableau S.M.A.R.T:
 | 191                   | Erreurs dues à des chocs externes ou vibrations violentes.            |
 
 *Documentation S.M.A.R.T:*
-https://fr.wikipedia.org/wiki/Self-Monitoring%2C_Analysis_and_Reporting_Technology
+https://fr.wikipedia.org/wiki/Self-Monitoring,_Analysis_and_Reporting_Technology#Attributs_S.M.A.R.T._connus
 
 *Estimations des temps de vie:*
 https://www.extremetech.com/computing/170748-how-long-do-hard-drives-actually-live-for
 
-## à faire
-* Sur le fichier de log on voit seulement « Pas d’erreurs trouvées » sans savoir quel est le disque concerné.
-* Afficher une estimation des testes Badblocks.
-* Compatibilité avec les données en minutes.
-* A l'aide du tableau S.M.A.R.T afficher les composant du disque qui sont susceptibles de tomber en panne prochainement.
-* Organisation des logs à revoir.
-* Afficher à la fin un récapitulatif des disques téstés ou créer un fichier avec les infos.
-* Ajouter un teste de vitesse d'écriture et de lécture voir "Memo_Scripts_Bash".
-* Supprimer les fichiers d'erreur de Badblocks si pas d'erreur à la fin du script.
-
-#### Autre aide
+#### Autre
 Test en destruction écriture:
 badblocks -wsv /dev/sdX > badblocks.txt
 
