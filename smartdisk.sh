@@ -25,12 +25,6 @@
 #$1
 installation()
 {
-if [[ -z "${1}" ]]
-then
-  echo "Nom de l'application manquant !" # à enlever 
-  exit 1
-fi
-
 app=$(echo "${1}" | tr "[:upper:]" "[:lower:]")
 
 stat_app=$(dpkg -s "${app}" | grep Status | awk '{print $2}')
