@@ -129,8 +129,6 @@ else
   then
     ans=$(printf "%.1f\n" $(echo "${heures}/8760" | bc -l | sed 's/\./,/'))
     echo -e "\nFonctionnement depuis : ${ans} ans \n"
-  else
-    echo ""
   fi
   
   # Temps de vie restant
@@ -160,8 +158,6 @@ else
     then
       arest=$(printf "%.1f\n" $(echo "${t_rest}/8760" | bc -l | sed 's/\./,/'))
       echo -e " ==> ~ ${arest} ans\n"
-    else
-      echo ""
     fi
   fi
   # Seuil d'alarme
@@ -184,8 +180,6 @@ else
   elif [[ ${heures} -ge 40000 ]]
   then
     echo -e " ==> [ ~100% ] \n"
-  else
-    echo ""
   fi
 fi
 }
