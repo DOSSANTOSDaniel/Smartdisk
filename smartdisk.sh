@@ -112,23 +112,23 @@ else
   # Temps écoulé
   if [[ ${heures} -le 23 ]]
   then
-    echo -e "\nFonctionnement depuis : ${heures} heures \n"
+    echo -e "\n Fonctionnement depuis : ${heures} heures \n"
   elif [[ ${heures} -ge 24 && ${heures} -le 167 ]]
   then
     jours=$(printf "%.1f\n" $(echo "${heures}/24" | bc -l | sed 's/\./,/'))
-    echo -e "\nFonctionnement depuis : ${jours} jours \n"
+    echo -e "\n Fonctionnement depuis : ${jours} jours \n"
   elif [[ ${heures} -ge 168 && ${heures} -le 729 ]]
   then
     semaines=$(printf "%.1f\n" $(echo "${heures}/168" | bc -l | sed 's/\./,/'))
-    echo -e "\nFonctionnement depuis : ${semaines} semaines \n"
+    echo -e "\n Fonctionnement depuis : ${semaines} semaines \n"
   elif [[ ${heures} -ge 730 && ${heures} -le 8759 ]]
   then
     mois=$(printf "%.1f\n" $(echo "${heures}/730.001" | bc -l | sed 's/\./,/'))
-    echo -e "\nFonctionnement depuis : ${mois} mois \n"
+    echo -e "\n Fonctionnement depuis : ${mois} mois \n"
   elif [[ ${heures} -ge 6087 ]]
   then
     ans=$(printf "%.1f\n" $(echo "${heures}/8760" | bc -l | sed 's/\./,/'))
-    echo -e "\nFonctionnement depuis : ${ans} ans \n"
+    echo -e "\n Fonctionnement depuis : ${ans} ans \n"
   fi
   
   # Temps de vie restant

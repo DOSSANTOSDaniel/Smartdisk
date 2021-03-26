@@ -25,7 +25,7 @@ Données utilisées
 Donnée du seuil
 ------------------
 <p>D'après se que j'ai lu sur le web le seuil max pour la durée de vie d'un disque dur est de ~40 000 heures (4,6 ans).</p>
-<p>Fabrication d'une echelle de l'usure naturelle :</p>
+<p>Fabrication d'une échelle de l'usure naturelle :</p>
 
 - Plus petit ou égal à 20000 heures ==> [ ~0% ]
 - Entre 20001 et 24999 heures ==> [ ~20% ]
@@ -57,7 +57,7 @@ Les pannes courantes, voir tableau S.M.A.R.T:
 |-----------------------|:---------------------------------------------------------------------:|
 | 01                    | Surface du disque ou tête de lecture dégradée.                        |
 | 02                    | Problème générale.                                                    |
-| 05                    | Trop de secteurs réalloués la vitesse de lecture et écriture diminue. |
+| 05                    | Trop de secteurs ré alloués la vitesse de lecture et écriture diminue.|
 | 07, 08, 10, 198 et 11 | Dégradation du sous-système mécanique.                                |
 | 191                   | Erreurs dues à des chocs externes ou vibrations violentes.            |
 
